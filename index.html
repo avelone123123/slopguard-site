@@ -147,7 +147,7 @@ footer.site-footer a:hover{color:var(--white)}
 <div class="tech-pills">
 <div class="tech-pill">Engine: <strong>100% Pure Rust</strong></div>
 <div class="tech-pill">Protocol: <strong>MCP JSON-RPC 2.0</strong></div>
-<div class="tech-pill">Firewalls: <strong>33 Active AST Rules</strong></div>
+<div class="tech-pill">Firewalls: <strong>34 Active AST Rules</strong></div>
 <div class="tech-pill">Startup: <strong>&lt; 3ms</strong></div>
 <div class="tech-pill">License: <strong>MIT Open Source</strong></div>
 </div>
@@ -233,6 +233,7 @@ footer.site-footer a:hover{color:var(--white)}
 <button class="tab-btn" onclick="switchScenario('inlined_secret', this)">Public Inlined Secret</button>
 <button class="tab-btn" onclick="switchScenario('crypto', this)">Insecure PRNG / Hash</button>
 <button class="tab-btn" onclick="switchScenario('test_sabotage', this)">Test Sabotage / .skip()</button>
+<button class="tab-btn" onclick="switchScenario('unbounded_concurrency', this)">Unbounded Concurrency</button>
 </div>
 <div class="diff-columns">
 <div class="diff-cell">
@@ -265,9 +266,10 @@ SlopGuard Enforced
 <div class="container">
 <div class="section-intro">
 <div class="section-kicker">Detection Engine</div>
-<h2 class="section-headline">33 Active AST Firewalls</h2>
+<h2 class="section-headline">34 Active AST Firewalls</h2>
 </div>
 <div class="rules-matrix">
+<div class="rule-card" onclick="openRuleDrawer('no-unbounded-concurrency')"><div class="rule-top-row"><span class="rule-identifier"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:6px"><line x1="6" y1="3" x2="6" y2="15"></line><circle cx="18" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><path d="M18 9a9 9 0 0 1-9 9"></path></svg>no-unbounded-concurrency</span><span class="severity-pill warn">WARNING</span></div><div class="rule-summary">Halts unthrottled concurrent iterations (Promise.all over .map, asyncio.gather without semaphore, join_all without backpressure) preventing EMFILE socket exhaustion and microtask heap thrashing.</div></div>
 <div class="rule-card"><div class="rule-top-row"><span class="rule-identifier"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:6px"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="M12 8v4"></path><path d="M12 16h.01"></path></svg>no-test-sabotage</span><span class="severity-pill error">CRITICAL / ERROR</span></div><div class="rule-summary">Halts AI reward hacking and test suite sabotage: intercepts skipped tests (it.skip, @pytest.mark.skip), test isolation traps (test.only, fit), and Rust #[ignore] attributes in test suites.</div></div>
 <div class="rule-card"><div class="rule-top-row"><span class="rule-identifier"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:6px"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>no-insecure-crypto</span><span class="severity-pill error">CRITICAL / ERROR</span></div><div class="rule-summary">Halts non-cryptographic PRNGs (Math.random, random.choice) for auth tokens/secrets (CWE-330) and intercepts legacy broken hash digests (MD5, SHA-1) in credential workflows (CWE-328).</div></div>
 <div class="rule-card"><div class="rule-top-row"><span class="rule-identifier"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:6px"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>no-inlined-secrets</span><span class="severity-pill error">CRITICAL / ERROR</span></div><div class="rule-summary">Halts public client prefixes (NEXT_PUBLIC_, VITE_, REACT_APP_) exposing database service roles, secret keys, or admin tokens in client bundles.</div></div>
@@ -381,6 +383,52 @@ slopguard monitor</pre>
 <p><a href="https://github.com/avelone123123/slopguard" target="_blank">GitHub</a> &middot; <a href="https://github.com/avelone123123/slopguard/releases/tag/v1.0.0" target="_blank">Releases</a> &middot; <a href="https://github.com/avelone123123/slopguard/issues" target="_blank">Issues</a></p>
 </div>
 </footer>
-<script src="app.js?v=20261031_0305"></script>
+<div id="ruleDrawerBackdrop" class="drawer-backdrop" onclick="closeRuleDrawer()"></div>
+<aside id="ruleDrawer" class="rule-drawer" aria-hidden="true">
+<div class="drawer-header">
+<div class="drawer-title-group">
+<svg id="drawerIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></svg>
+<span id="drawerRuleId" class="drawer-rule-name">no-unbounded-concurrency</span>
+<span id="drawerSeverity" class="severity-pill warn">WARNING</span>
+</div>
+<button class="drawer-close-btn" onclick="closeRuleDrawer()" aria-label="Close drawer">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+</button>
+</div>
+<div class="drawer-content">
+<div class="drawer-badge-row">
+<span id="drawerCategory" class="drawer-badge cat">AsyncAntiPattern</span>
+<span class="drawer-badge lang">JavaScript / TypeScript</span>
+<span class="drawer-badge lang">Python</span>
+<span class="drawer-badge lang">Rust</span>
+</div>
+<div class="drawer-section">
+<div class="drawer-section-title">Architectural Rationale &amp; Threat Model</div>
+<p id="drawerSummary" class="drawer-text"></p>
+<ul id="drawerThreats" class="drawer-threat-list" style="margin-top:10px"></ul>
+</div>
+<div class="drawer-section">
+<div class="drawer-section-title">Deterministic Fix Snippets</div>
+<div class="drawer-fix-box">
+<div class="drawer-fix-header">
+<div class="drawer-lang-tabs">
+<button id="tabJs" class="drawer-lang-btn active" onclick="switchDrawerLang('js')">TS / JS (p-limit)</button>
+<button id="tabPy" class="drawer-lang-btn" onclick="switchDrawerLang('py')">Python (Semaphore)</button>
+<button id="tabRs" class="drawer-lang-btn" onclick="switchDrawerLang('rs')">Rust (buffer_unordered)</button>
+</div>
+<button class="copy-icon-btn" onclick="copyDrawerCode(this)" title="Copy snippet">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+</button>
+</div>
+<pre id="drawerCode" class="drawer-code-pre"></pre>
+</div>
+</div>
+<div class="drawer-section">
+<div class="drawer-section-title">Exclusion Filters (Safe Constructs)</div>
+<p id="drawerExclusions" class="drawer-text" style="font-family:ui-monospace,Consolas,monospace;font-size:12px;color:var(--text-muted)"></p>
+</div>
+</div>
+</aside>
+<script src="app.js?v=20261031_0530"></script>
 </body>
 </html>
