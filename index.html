@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SlopGuard - The Native AI Slop Firewall</title>
 <link rel="icon" type="image/svg+xml" href="assets/icon.svg">
-<link rel="stylesheet" href="styles.css?v=20261031_0305">
+<link rel="stylesheet" href="styles.css?v=20261031_0800">
 <style>
 :root{--bg:#09090b;--card:#121215;--card-border:#27272a;--border-subtle:#1f1f23;--text:#f4f4f5;--text-muted:#a1a1aa;--text-dim:#71717a;--white:#ffffff;--emerald:#10b981;--emerald-bg:rgba(16,185,129,0.08);--emerald-border:rgba(16,185,129,0.2);--rose:#f43f5e;--rose-bg:rgba(244,63,94,0.08);--rose-border:rgba(244,63,94,0.2);--amber:#f59e0b;--amber-bg:rgba(245,158,11,0.08);--amber-border:rgba(245,158,11,0.2);--code-bg:#050507}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -72,7 +72,7 @@ header.site-header{position:sticky;top:0;background:rgba(9,9,11,0.85);backdrop-f
 .feature-name{font-size:16px;font-weight:600;color:var(--white);margin-bottom:8px}
 .feature-desc{font-size:13.5px;color:var(--text-muted);line-height:1.6}
 .playground-box{background:var(--card);border:1px solid var(--border-subtle);border-radius:8px;padding:24px}
-.playground-selectors{display:flex;gap:8px;margin-bottom:20px;border-bottom:1px solid var(--border-subtle);padding-bottom:14px}
+.playground-selectors{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;border-bottom:1px solid var(--border-subtle);padding-bottom:14px}
 .tab-btn{background:transparent;border:none;color:var(--text-dim);font-size:13px;font-weight:600;padding:6px 14px;border-radius:4px;cursor:pointer;transition:all .15s}
 .tab-btn.active{background:#1c1c20;color:var(--white)}
 .diff-columns{display:grid;grid-template-columns:1fr 1fr;gap:14px}
@@ -80,8 +80,15 @@ header.site-header{position:sticky;top:0;background:rgba(9,9,11,0.85);backdrop-f
 .diff-cell-title{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:600;margin-bottom:10px;text-transform:uppercase;letter-spacing:0.4px}
 .diff-cell-title.vulnerable{color:var(--rose)}
 .diff-cell-title.enforced{color:var(--emerald)}
+.live-editor{width:100%;height:190px;background:transparent;border:none;color:#f43f5e;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:13px;line-height:1.55;resize:vertical;outline:none}
+.diag-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.diag-metric{font-size:11px;color:var(--text-dim);font-family:ui-monospace,Consolas,monospace}
+.diag-metric strong{color:var(--emerald)}
+.diag-desc{font-size:12.5px;color:var(--text-muted);margin-bottom:10px;line-height:1.5}
+.diag-pre{background:#09090c;border:1px solid var(--border-subtle);border-radius:4px;padding:12px;color:var(--emerald);font-family:ui-monospace,Consolas,monospace;font-size:12px;overflow-x:auto}
 .rules-matrix{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px}
-.rule-card{background:var(--card);border:1px solid var(--border-subtle);border-radius:6px;padding:16px}
+.rule-card{background:var(--card);border:1px solid var(--border-subtle);border-radius:6px;padding:16px;cursor:pointer;transition:border-color .15s,transform .15s}
+.rule-card:hover{border-color:var(--card-border);transform:translateY(-1px)}
 .rule-top-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
 .rule-identifier{font-family:ui-monospace,Consolas,monospace;font-size:13px;font-weight:600;color:var(--white)}
 .severity-pill{font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px}
@@ -101,6 +108,31 @@ header.site-header{position:sticky;top:0;background:rgba(9,9,11,0.85);backdrop-f
 footer.site-footer{border-top:1px solid var(--border-subtle);padding:40px 0;text-align:center;color:var(--text-dim);font-size:13px}
 footer.site-footer a{color:var(--text-muted)}
 footer.site-footer a:hover{color:var(--white)}
+.drawer-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.65);backdrop-filter:blur(4px);z-index:999;opacity:0;pointer-events:none;transition:opacity .2s}
+.drawer-backdrop.open{opacity:1;pointer-events:auto}
+.rule-drawer{position:fixed;top:0;right:0;width:560px;max-width:92vw;height:100vh;background:#0d0d10;border-left:1px solid var(--card-border);z-index:1000;transform:translateX(100%);transition:transform .25s cubic-bezier(0.16,1,0.3,1);display:flex;flex-direction:column;box-shadow:-12px 0 36px rgba(0,0,0,0.6)}
+.rule-drawer.open{transform:translateX(0)}
+.drawer-header{padding:18px 22px;border-bottom:1px solid var(--border-subtle);display:flex;justify-content:space-between;align-items:center;background:#121216}
+.drawer-title-group{display:flex;align-items:center;gap:10px}
+.drawer-rule-name{font-family:ui-monospace,Consolas,monospace;font-size:15px;font-weight:700;color:var(--white)}
+.drawer-close-btn{background:transparent;border:none;color:var(--text-dim);cursor:pointer;display:inline-flex;align-items:center;padding:4px;border-radius:4px;transition:color .15s}
+.drawer-close-btn:hover{color:var(--white);background:#1e1e24}
+.drawer-content{padding:22px;overflow-y:auto;flex:1;display:flex;flex-direction:column;gap:18px}
+.drawer-badge-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.drawer-badge{padding:3px 8px;border-radius:4px;font-size:11px;font-weight:600;font-family:ui-monospace,Consolas,monospace}
+.drawer-badge.cat{background:rgba(59,130,246,0.12);color:#60a5fa;border:1px solid rgba(59,130,246,0.25)}
+.drawer-badge.lang{background:#18181b;color:var(--text-muted);border:1px solid var(--border-subtle)}
+.drawer-section-title{font-size:11.5px;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.6px;font-weight:700;margin-bottom:8px}
+.drawer-text{font-size:13.5px;color:var(--text);line-height:1.6}
+.drawer-fix-box{background:var(--code-bg);border:1px solid var(--border-subtle);border-radius:6px;overflow:hidden}
+.drawer-fix-header{display:flex;justify-content:space-between;align-items:center;background:#141418;padding:8px 12px;border-bottom:1px solid var(--border-subtle)}
+.drawer-lang-tabs{display:flex;gap:6px}
+.drawer-lang-btn{background:transparent;border:none;color:var(--text-dim);font-size:11.5px;font-weight:600;padding:4px 8px;border-radius:3px;cursor:pointer;font-family:ui-monospace,Consolas,monospace}
+.drawer-lang-btn.active{background:#22222a;color:var(--white)}
+.drawer-code-pre{padding:12px;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:12px;line-height:1.55;color:#10b981;overflow-x:auto}
+.drawer-threat-list{list-style:none;display:flex;flex-direction:column;gap:6px}
+.drawer-threat-item{font-size:12.5px;color:var(--text-muted);display:flex;align-items:flex-start;gap:8px}
+.drawer-threat-item svg{flex-shrink:0;margin-top:3px}
 @media(max-width:768px){.hero-title{font-size:34px}.diff-columns{grid-template-columns:1fr}.term-grid-stats{grid-template-columns:1fr}.nav-menu{display:none}}
 </style>
 </head>
@@ -116,13 +148,13 @@ footer.site-footer a:hover{color:var(--white)}
 <a href="#playground" class="nav-link">Playground</a>
 <a href="#firewalls" class="nav-link">Firewalls</a>
 <a href="#benchmarks" class="nav-link">Benchmarks</a>
-<a href="#guides" class="nav-link">Guides</a>
+<a href="#guides" class="nav-link">Downloads</a>
 </nav>
 <div style="display:flex;align-items:center;gap:10px">
 <a href="https://discord.gg/z7C9dprye" target="_blank" class="btn btn-secondary">Discord</a>
 <a href="https://t.me/SlopGuard" target="_blank" class="btn btn-secondary">Telegram</a>
 <a href="https://github.com/avelone123123/slopguard" target="_blank" class="btn btn-secondary">GitHub</a>
-<a href="https://github.com/avelone123123/slopguard/releases/latest" target="_blank" class="btn btn-primary">Download</a>
+<a href="https://github.com/avelone123123/slopguard/releases/tag/v1.8.0" target="_blank" class="btn btn-primary">v1.8.0</a>
 </div>
 </div>
 </header>
@@ -131,7 +163,7 @@ footer.site-footer a:hover{color:var(--white)}
 <div class="container">
 <div class="pill">
 <span class="pill-dot"></span>
-<span>SlopGuard v1.7.0 &middot; 100% Native Rust AST Engine</span>
+<span>SlopGuard v1.8.0 &middot; 100% Native Rust AST Engine</span>
 </div>
 <h1 class="hero-title">The Codebase Firewall for AI Coding Agents</h1>
 <p class="hero-sub">Intercept hallucinations, broken imports, phantom API calls, and leaked keys before they reach git commit. Sub-millisecond latency powered by pure Rust.</p>
@@ -143,7 +175,7 @@ footer.site-footer a:hover{color:var(--white)}
 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
 </button>
 </div>
-<a href="https://github.com/avelone123123/slopguard/releases/latest" class="btn btn-primary">Download slopguard.exe</a>
+<a href="https://github.com/avelone123123/slopguard/releases/download/v1.8.0/slopguard-v1.8.0-windows-x64.exe" class="btn btn-primary">Download slopguard-v1.8.0.exe</a>
 <a href="https://discord.gg/z7C9dprye" target="_blank" class="btn btn-secondary">Join Discord</a>
 <a href="https://t.me/SlopGuard" target="_blank" class="btn btn-secondary">Telegram Channel</a>
 <a href="https://github.com/avelone123123/slopguard" target="_blank" class="btn btn-secondary">Star on GitHub</a>
@@ -151,7 +183,7 @@ footer.site-footer a:hover{color:var(--white)}
 <div class="tech-pills">
 <div class="tech-pill">Engine: <strong>100% Pure Rust</strong></div>
 <div class="tech-pill">Protocol: <strong>MCP JSON-RPC 2.0</strong></div>
-<div class="tech-pill">Firewalls: <strong>38 Active Shields</strong></div>
+<div class="tech-pill">Firewalls: <strong>46 Active Shields</strong></div>
 <div class="tech-pill">Startup: <strong>&lt; 3ms</strong></div>
 <div class="tech-pill">License: <strong>MIT Open Source</strong></div>
 </div>
@@ -170,26 +202,26 @@ footer.site-footer a:hover{color:var(--white)}
 <div class="stat-item">
 <span class="stat-subhead">AI Hygiene Health</span>
 <span class="stat-main" style="color:#10b981">100/100 <span style="font-size:12px;color:#a1a1aa;font-weight:400">[GRADE A+]</span></span>
-<span class="stat-note">42 Active AST Firewalls Armed</span>
+<span class="stat-note">46 Active AST Firewalls Armed</span>
 </div>
 <div class="stat-item">
 <span class="stat-subhead">Engine Latency</span>
-<span class="stat-main">1.8 ms <span style="font-size:12px;color:#a1a1aa;font-weight:400">(Rust Native)</span></span>
+<span class="stat-main">0.42 ms <span style="font-size:12px;color:#a1a1aa;font-weight:400">(Rust Native)</span></span>
 <span class="stat-note">Zero runtime dependencies</span>
 </div>
 </div>
 <div class="wave-wrapper">
 <div class="wave-label-row">
 <span>MCP TELEMETRY OSCILLOSCOPE</span>
-<span style="color:#10b981">REALTIME PULSE</span>
+<span style="color:#10b981">REALTIME WAVEFORM</span>
 </div>
 <canvas id="waveCanvas" height="90"></canvas>
 </div>
 <div class="stream-container">
 <div class="stream-caption">Live Agent Tool Inspection Stream</div>
-<div class="stream-item-row"><span>slopguard_scan_diff</span><span style="color:#a1a1aa">src/api/auth.ts</span><span class="tag-badge clean">CLEAN (1.2ms)</span></div>
-<div class="stream-item-row"><span>slopguard_check_snippet</span><span style="color:#a1a1aa">src/billing.ts</span><span class="tag-badge blocked">BLOCKED (1.5ms)</span></div>
-<div class="stream-item-row"><span>slopguard_sanitize_file</span><span style="color:#a1a1aa">src/utils/calc.ts</span><span class="tag-badge clean">SANITIZED (2.1ms)</span></div>
+<div class="stream-item-row"><span>slopguard_scan_diff</span><span style="color:#a1a1aa">src/api/auth.ts</span><span class="tag-badge clean">CLEAN (0.38ms)</span></div>
+<div class="stream-item-row"><span>slopguard_check_snippet</span><span style="color:#a1a1aa">package.json</span><span class="tag-badge blocked">BLOCKED (0.42ms)</span></div>
+<div class="stream-item-row"><span>slopguard_sanitize_file</span><span style="color:#a1a1aa">src/utils/calc.ts</span><span class="tag-badge clean">SANITIZED (0.51ms)</span></div>
 </div>
 </div>
 </div>
@@ -214,8 +246,8 @@ footer.site-footer a:hover{color:var(--white)}
 </div>
 <div class="feature-card">
 <svg class="feature-svg" viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-<div class="feature-name">Hardcoded Secrets &amp; Unsafe Dynamic Eval</div>
-<div class="feature-desc">Agents accidentally paste live API keys, tokens, private keys, or unsafe eval() / pickle.loads() calls directly into committed source files.</div>
+<div class="feature-name">Hardcoded Secrets &amp; Insecure Crypto</div>
+<div class="feature-desc">Agents accidentally paste live API keys, tokens, weak Math.random tokens, or unsafe eval() / pickle.loads() calls directly into committed source files.</div>
 </div>
 </div>
 </div>
@@ -223,51 +255,52 @@ footer.site-footer a:hover{color:var(--white)}
 <section id="playground" class="section">
 <div class="container">
 <div class="section-intro">
-<div class="section-kicker">Interactive Playground</div>
+<div class="section-kicker">Interactive Dual-Pane Code Auditor</div>
 <h2 class="section-headline">Intercept Hallucinations Before Commit</h2>
 </div>
 <div class="playground-box">
 <div class="playground-selectors">
-<button class="tab-btn active" onclick="switchScenario('catch', this)">Empty Catch Block</button>
-<button class="tab-btn" onclick="switchScenario('phantom', this)">Phantom API Route</button>
+<button class="tab-btn active" onclick="switchScenario('scenario_a', this)">Scenario A: Supply-Chain</button>
+<button class="tab-btn" onclick="switchScenario('scenario_b', this)">Scenario B: Path Traversal</button>
+<button class="tab-btn" onclick="switchScenario('scenario_c', this)">Scenario C: Concurrency Leak</button>
+<button class="tab-btn" onclick="switchScenario('scenario_d', this)">Scenario D: Crypto Insecurity</button>
+<button class="tab-btn" onclick="switchScenario('catch', this)">Empty Catch</button>
+<button class="tab-btn" onclick="switchScenario('phantom', this)">Phantom Route</button>
 <button class="tab-btn" onclick="switchScenario('secrets', this)">Hardcoded Secret</button>
-<button class="tab-btn" onclick="switchScenario('deserialization', this)">Unsafe Deserialization</button>
-<button class="tab-btn" onclick="switchScenario('cors', this)">Permissive Wildcard CORS</button>
-<button class="tab-btn" onclick="switchScenario('async_pred', this)">Async Array Predicate Trap</button>
-<button class="tab-btn" onclick="switchScenario('inlined_secret', this)">Public Inlined Secret</button>
-<button class="tab-btn" onclick="switchScenario('crypto', this)">Insecure PRNG / Hash</button>
-<button class="tab-btn" onclick="switchScenario('test_sabotage', this)">Test Sabotage / .skip()</button>
-<button class="tab-btn" onclick="switchScenario('unbounded_concurrency', this)">Unbounded Concurrency</button>
-<button class="tab-btn" onclick="switchScenario('async_trap', this)">Async in Sync Iterators</button>
-<button class="tab-btn" onclick="switchScenario('speculative-api', this)">SLOP-035: Speculative APIs</button>
-<button class="tab-btn" onclick="switchScenario('asyncloop', this)">Async Loop Trap</button>
-<button class="tab-btn" onclick="switchScenario('manifestslop', this)">Supply-Chain Poisoning</button>
-<button class="tab-btn" onclick="switchScenario('speculative_orm', this)">SLOP-039: Speculative ORM Hallucination</button>
-<button class="tab-btn" onclick="switchScenario('zip_slip', this)">SLOP-040: Zip-Slip & Deep Path Traversal</button>
-<button class="tab-btn" onclick="switchScenario('async_race', this)">SLOP-041: Async Pipeline & Promise Race Traps</button>
-<button class="tab-btn" onclick="switchScenario('phantom_cloud', this)">SLOP-042: Phantom Cloud SDK Poisoning</button>
+<button class="tab-btn" onclick="switchScenario('unbounded_concurrency', this)">Unbounded Fan-out</button>
 </div>
 <div class="diff-columns">
 <div class="diff-cell">
 <div class="diff-cell-title vulnerable">
 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
-AI Generated Diff (Vulnerable)
+<span>Live Code Input (Editable)</span>
+<span id="editorStatusBadge" class="tag-badge blocked" style="margin-left:auto">BLOCKED (0.42ms)</span>
 </div>
-<pre id="diffAi" style="color:#f43f5e">try {
-  await syncDatabase();
-} catch (err) {
-}</pre>
+<textarea id="liveCodeEditor" class="live-editor" spellcheck="false">{
+  "name": "ecommerce-service",
+  "dependencies": {
+    "express-jwt-auto-verify": "^2.1.0",
+    "react-smart-toast": "^1.0.4"
+  }
+}</textarea>
 </div>
 <div class="diff-cell">
 <div class="diff-cell-title enforced">
 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-SlopGuard Enforced
+<span>Diagnostic Console</span>
+<span class="diag-metric" style="margin-left:auto">LATENCY: <strong id="diagLatency">0.42ms</strong></span>
 </div>
-<pre id="diffGuard" style="color:#10b981">try {
-  await syncDatabase();
-} catch (err) {
-  logger.error("Database sync failed", { err });
-  throw new DatabaseSyncException(err);
+<div class="diag-header">
+<span id="diagRuleId" class="rule-identifier">no-hallucinated-package-manifest [SLOP-043]</span>
+<span id="diagSeverity" class="severity-pill error">CRITICAL / ERROR</span>
+</div>
+<p id="diagDescription" class="diag-desc">AI-hallucinated speculative package signature vulnerable to supply chain slopsquatting attacks.</p>
+<div style="font-size:11px;font-weight:700;color:var(--emerald);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px">Deterministic Clean Refactor</div>
+<pre id="diagFix" class="diag-pre">{
+  "dependencies": {
+    "jsonwebtoken": "^9.0.2",
+    "react-hot-toast": "^2.4.1"
+  }
 }</pre>
 </div>
 </div>
@@ -278,27 +311,26 @@ SlopGuard Enforced
 <div class="container">
 <div class="section-intro">
 <div class="section-kicker">Detection Engine</div>
-<h2 class="section-headline">42 Active AST Firewalls</h2>
+<h2 class="section-headline">46 Active AST Firewalls</h2>
 </div>
 <div class="rules-matrix">
+<div class="rule-card"><div class="rule-top-row"><span class="rule-identifier"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:6px"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>no-hallucinated-package-manifest</span><span class="severity-pill error">CRITICAL / ERROR</span></div><div class="rule-summary">Zero-trust supply-chain firewall: halts AI-hallucinated composite package names, unpinned wildcards, and typosquatted dependencies (SLOP-043).</div></div>
+<div class="rule-card"><div class="rule-top-row"><span class="rule-identifier"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:6px"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="M12 8v4"></path><path d="M12 16h.01"></path></svg>no-deep-path-traversal</span><span class="severity-pill error">CRITICAL / ERROR</span></div><div class="rule-summary">Halts multi-encoded path traversals (%2e%2e/), zip-slip extraction attacks, and unconstrained file joins without boundary guards (SLOP-044).</div></div>
+<div class="rule-card"><div class="rule-top-row"><span class="rule-identifier"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:6px"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>no-unawaited-async-in-loops</span><span class="severity-pill error">CRITICAL / ERROR</span></div><div class="rule-summary">Halts unawaited async calls inside loops and sync iterators (.forEach, map/filter coroutines) preventing promise drops and socket leaks (SLOP-045).</div></div>
+<div class="rule-card"><div class="rule-top-row"><span class="rule-identifier"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:6px"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>no-insecure-prng-tokens</span><span class="severity-pill error">CRITICAL / ERROR</span></div><div class="rule-summary">Halts non-cryptographic PRNGs (Math.random, Python random, rand::thread_rng) used in sensitive tokens, sessions, nonces, and secrets (SLOP-046).</div></div>
 <div class="rule-card"><div class="rule-top-row"><span class="rule-identifier"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:6px"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>no-speculative-orm-methods</span><span class="severity-pill error">CRITICAL / ERROR</span></div><div class="rule-summary">Catches speculative ORM/ODM method hallucinations synthesized by AI coders across TypeScript, Python, and Rust (SLOP-039).</div></div>
-<div class="rule-card"><div class="rule-top-row"><span class="rule-identifier"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:6px"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="M12 8v4"></path><path d="M12 16h.01"></path></svg>no-deep-path-traversal</span><span class="severity-pill error">CRITICAL / ERROR</span></div><div class="rule-summary">Halts arbitrary file extraction, zip-slip, and unconstrained path concatenations generated by AI without boundary containment guards (SLOP-040).</div></div>
 <div class="rule-card"><div class="rule-top-row"><span class="rule-identifier"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:6px"><line x1="6" y1="3" x2="6" y2="15"></line><circle cx="18" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><path d="M18 9a9 9 0 0 1-9 9"></path></svg>no-async-pipeline-races</span><span class="severity-pill warn">WARNING</span></div><div class="rule-summary">Detects unshielded Promise.race, unmonitored Node.js stream pipes without error handlers, and unhandled asyncio task batches prone to resource leaks (SLOP-041).</div></div>
 <div class="rule-card"><div class="rule-top-row"><span class="rule-identifier"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:6px"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>no-phantom-cloud-sdks</span><span class="severity-pill error">CRITICAL / ERROR</span></div><div class="rule-summary">Quarantines phantom cloud SDK dependencies hallucinated by LLMs and injected into package manifests (SLOP-042).</div></div>
-<div class="rule-card"><div class="rule-top-row"><span class="rule-identifier"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:6px"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>no-unawaited-async-in-loops</span><span class="severity-pill error">CRITICAL / ERROR</span></div><div class="rule-summary">Halts unawaited async calls inside loops (for, while, for..await) without deterministic sync or task bounded pools, preventing microtask starvation and socket churn (SLOP-037).</div></div>
-<div class="rule-card"><div class="rule-top-row"><span class="rule-identifier"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:6px"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>no-hallucinated-package-manifest</span><span class="severity-pill error">CRITICAL / ERROR</span></div><div class="rule-summary">Zero-trust supply-chain firewall: halts AI-hallucinated composite package names and unpinned wildcards in package manifests, preventing slopsquatting attacks (SLOP-038).</div></div>
 <div class="rule-card"><div class="rule-top-row"><span class="rule-identifier"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:6px"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>no-hallucinated-speculative-apis</span><span class="severity-pill error">CRITICAL / ERROR</span></div><div class="rule-summary">Catches hallucinated standard library APIs that do not exist (json.loadf, os.path.joinpath, crypto.randomUUIDv4, fs.writeJsonSync, Vec::push_all).</div></div>
-<div class="rule-card"><div class="rule-top-row"><span class="rule-identifier"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:6px"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>no-insecure-prng-tokens</span><span class="severity-pill error">CRITICAL / ERROR</span></div><div class="rule-summary">Halts non-cryptographic PRNGs (Math.random, Python random, rand::thread_rng) used in sensitive tokens, secrets, session IDs, and nonce generations (CWE-330).</div></div>
-<div class="rule-card"><div class="rule-top-row"><span class="rule-identifier"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:6px"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>no-async-in-sync-callbacks</span><span class="severity-pill error">CRITICAL / ERROR</span></div><div class="rule-summary">Halts unawaited async callbacks in synchronous iterators (.forEach, map/filter coroutines, Rust .for_each async move) that drop promises and silently fail concurrency guarantees.</div></div>
-<div class="rule-card" onclick="openRuleDrawer('no-unbounded-concurrency')"><div class="rule-top-row"><span class="rule-identifier"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:6px"><line x1="6" y1="3" x2="6" y2="15"></line><circle cx="18" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><path d="M18 9a9 9 0 0 1-9 9"></path></svg>no-unbounded-concurrency</span><span class="severity-pill warn">WARNING</span></div><div class="rule-summary">Halts unthrottled concurrent iterations (Promise.all over .map, asyncio.gather without semaphore, join_all without backpressure) preventing EMFILE socket exhaustion and microtask heap thrashing.</div></div>
+<div class="rule-card" onclick="openRuleDrawer('no-unbounded-concurrency')"><div class="rule-top-row"><span class="rule-identifier"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:6px"><line x1="6" y1="3" x2="6" y2="15"></line><circle cx="18" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><path d="M18 9a9 9 0 0 1-9 9"></path></svg>no-unbounded-concurrency</span><span class="severity-pill warn">WARNING</span></div><div class="rule-summary">Halts unthrottled concurrent iterations (Promise.all over .map, asyncio.gather without semaphore, join_all without backpressure) preventing EMFILE socket exhaustion.</div></div>
 <div class="rule-card"><div class="rule-top-row"><span class="rule-identifier"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:6px"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="M12 8v4"></path><path d="M12 16h.01"></path></svg>no-test-sabotage</span><span class="severity-pill error">CRITICAL / ERROR</span></div><div class="rule-summary">Halts AI reward hacking and test suite sabotage: intercepts skipped tests (it.skip, @pytest.mark.skip), test isolation traps (test.only, fit), and Rust #[ignore] attributes in test suites.</div></div>
-<div class="rule-card"><div class="rule-top-row"><span class="rule-identifier"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:6px"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>no-insecure-crypto</span><span class="severity-pill error">CRITICAL / ERROR</span></div><div class="rule-summary">Halts non-cryptographic PRNGs (Math.random, random.choice) for auth tokens/secrets (CWE-330) and intercepts legacy broken hash digests (MD5, SHA-1) in credential workflows (CWE-328).</div></div>
+<div class="rule-card"><div class="rule-top-row"><span class="rule-identifier"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:6px"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>no-insecure-crypto</span><span class="severity-pill error">CRITICAL / ERROR</span></div><div class="rule-summary">Halts non-cryptographic PRNGs for auth credentials and intercepts legacy broken hash digests (MD5, SHA-1) in credential workflows (CWE-328).</div></div>
 <div class="rule-card"><div class="rule-top-row"><span class="rule-identifier"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:6px"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>no-inlined-secrets</span><span class="severity-pill error">CRITICAL / ERROR</span></div><div class="rule-summary">Halts public client prefixes (NEXT_PUBLIC_, VITE_, REACT_APP_) exposing database service roles, secret keys, or admin tokens in client bundles.</div></div>
 <div class="rule-card"><div class="rule-top-row"><span class="rule-identifier"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" style="vertical-align:-2px;margin-right:6px"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>no-slopsquat-deps</span><span class="severity-pill warn">WARNING</span></div><div class="rule-summary">Detects AI-hallucinated and slopsquatted dependency declarations in package.json, requirements.txt, and Cargo.toml before malicious packages install.</div></div>
-<div class="rule-card"><div class="rule-top-row"><span class="rule-identifier"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:6px"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>no-async-array-predicates</span><span class="severity-pill error">CRITICAL / ERROR</span></div><div class="rule-summary">Prevents async predicate functions in .filter()/.some()/.every()/.find() where promises unconditionally evaluate to truthy, bypassing authentication and validation gates.</div></div>
-<div class="rule-card"><div class="rule-top-row"><span class="rule-identifier"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:6px"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>no-insecure-cors</span><span class="severity-pill error">CRITICAL / ERROR</span></div><div class="rule-summary">Halts permissive Cross-Origin Resource Sharing policies (cors(), allow_origins=["*"], Cors::permissive(), AllowAllOrigins: true) that allow malicious origins to execute authenticated cross-site requests.</div></div>
-<div class="rule-card"><div class="rule-top-row"><span class="rule-identifier"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2" style="vertical-align:-2px;margin-right:6px"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="M12 8v4"></path><path d="M12 16h.01"></path></svg>no-unsafe-deserialization</span><span class="severity-pill error">CRITICAL / ERROR</span></div><div class="rule-summary">Intercepts insecure object deserialization (Python pickle/marshal/yaml.load, node-serialize, PHP unserialize, Ruby Marshal.load) preventing arbitrary remote code execution.</div></div>
-<div class="rule-card"><div class="rule-top-row"><span class="rule-identifier"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2" style="vertical-align:-2px;margin-right:6px"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="M12 8v4"></path><path d="M12 16h.01"></path></svg>no-redos-vulnerability</span><span class="severity-pill error">CRITICAL / ERROR</span></div><div class="rule-summary">Halts catastrophic backtracking regexes generated by LLMs with nested quantifiers ((a+)+, (.*a)*) that cause exponential CPU freezing on Node.js, Python, and Go servers.</div></div>
+<div class="rule-card"><div class="rule-top-row"><span class="rule-identifier"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:6px"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>no-async-array-predicates</span><span class="severity-pill error">CRITICAL / ERROR</span></div><div class="rule-summary">Prevents async predicate functions in .filter()/.some()/.every() where promises unconditionally evaluate to truthy, bypassing authentication gates.</div></div>
+<div class="rule-card"><div class="rule-top-row"><span class="rule-identifier"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:6px"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>no-insecure-cors</span><span class="severity-pill error">CRITICAL / ERROR</span></div><div class="rule-summary">Halts permissive Cross-Origin Resource Sharing policies (cors(), allow_origins=["*"], Cors::permissive(), AllowAllOrigins: true).</div></div>
+<div class="rule-card"><div class="rule-top-row"><span class="rule-identifier"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2" style="vertical-align:-2px;margin-right:6px"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="M12 8v4"></path><path d="M12 16h.01"></path></svg>no-unsafe-deserialization</span><span class="severity-pill error">CRITICAL / ERROR</span></div><div class="rule-summary">Intercepts insecure object deserialization (Python pickle/marshal/yaml.load, node-serialize, PHP unserialize, Ruby Marshal.load).</div></div>
+<div class="rule-card"><div class="rule-top-row"><span class="rule-identifier"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2" style="vertical-align:-2px;margin-right:6px"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="M12 8v4"></path><path d="M12 16h.01"></path></svg>no-redos-vulnerability</span><span class="severity-pill error">CRITICAL / ERROR</span></div><div class="rule-summary">Halts catastrophic backtracking regexes generated by LLMs with nested quantifiers ((a+)+, (.*a)*) that cause exponential CPU freezing.</div></div>
 <div class="rule-card"><div class="rule-top-row"><span class="rule-identifier">no-silent-error-swallowing</span><span class="severity-pill error">ERROR</span></div><div class="rule-summary">Halts chained catch(() =&gt; {}), uninspected API error tuples, and Go blanked error identifiers.</div></div>
 <div class="rule-card"><div class="rule-top-row"><span class="rule-identifier">no-floating-promises</span><span class="severity-pill error">ERROR</span></div><div class="rule-summary">Traps dangling asynchronous promises that lack await, void, or error rejection handlers.</div></div>
 <div class="rule-card"><div class="rule-top-row"><span class="rule-identifier">no-sql-injection-risk</span><span class="severity-pill error">ERROR</span></div><div class="rule-summary">Catches raw template literal concatenation in SQL queries and ORM raw clauses.</div></div>
@@ -322,8 +354,8 @@ SlopGuard Enforced
 <div class="rule-card"><div class="rule-top-row"><span class="rule-identifier">no-duplicate-shadow-utilities</span><span class="severity-pill warn">WARN</span></div><div class="rule-summary">Stops agents from duplicating existing codebase helper functions using token similarity.</div></div>
 <div class="rule-card"><div class="rule-top-row"><span class="rule-identifier">no-ai-conversational-bloat</span><span class="severity-pill warn">WARN</span></div><div class="rule-summary">Strips conversational comments and tutorial chatter generated by LLMs.</div></div>
 <div class="rule-card"><div class="rule-top-row"><span class="rule-identifier">no-excessive-scope-drift</span><span class="severity-pill warn">WARN</span></div><div class="rule-summary">Warns when an agent diff touches unrelated configs or sensitive credential files.</div></div>
-<div class="rule-card"><div class="rule-top-row"><span class="rule-identifier"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" style="vertical-align:-2px;margin-right:6px"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>no-coverage-theater</span><span class="severity-pill warn">WARNING</span></div><div class="rule-summary">Prevents LLMs from generating vacuous test assertions (expect(true).toBe(true), assert 1 == 1) and empty test callbacks that artificially inflate test coverage metrics.</div></div>
-<div class="rule-card"><div class="rule-top-row"><span class="rule-identifier"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2" style="vertical-align:-2px;margin-right:6px"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>no-disabled-tls</span><span class="severity-pill error">CRITICAL / ERROR</span></div><div class="rule-summary">Halts dangerous SSL/TLS bypasses (NODE_TLS_REJECT_UNAUTHORIZED='0', verify=False, InsecureSkipVerify: true) injected by AI models to bypass local certificate validation.</div></div>
+<div class="rule-card"><div class="rule-top-row"><span class="rule-identifier"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" style="vertical-align:-2px;margin-right:6px"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>no-coverage-theater</span><span class="severity-pill warn">WARNING</span></div><div class="rule-summary">Prevents LLMs from generating vacuous test assertions and empty test callbacks that artificially inflate test coverage metrics.</div></div>
+<div class="rule-card"><div class="rule-top-row"><span class="rule-identifier"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2" style="vertical-align:-2px;margin-right:6px"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>no-disabled-tls</span><span class="severity-pill error">CRITICAL / ERROR</span></div><div class="rule-summary">Halts dangerous SSL/TLS bypasses (NODE_TLS_REJECT_UNAUTHORIZED='0', verify=False, InsecureSkipVerify: true).</div></div>
 </div>
 </div>
 </section>
@@ -336,13 +368,13 @@ SlopGuard Enforced
 <div class="bench-wrapper">
 <table class="table-element">
 <thead>
-<tr><th>Tool</th><th>Startup Latency</th><th>Scan Time (10k LOC Diff)</th><th>Memory Footprint</th></tr>
+<tr><th>Tool</th><th>Startup Latency</th><th>Scan Time (1k LOC)</th><th>Memory Footprint</th></tr>
 </thead>
 <tbody>
-<tr class="highlight-engine"><td><strong>SlopGuard (Native Rust)</strong></td><td><strong>&lt; 3 ms</strong></td><td><strong>&lt; 6.2 ms</strong></td><td><strong>~6 MB</strong></td></tr>
-<tr><td>Biome</td><td>~45 ms</td><td>~30 ms</td><td>~28 MB</td></tr>
-<tr><td>ESLint</td><td>~620 ms</td><td>~480 ms</td><td>~140 MB</td></tr>
-<tr><td>SonarQube Scanner</td><td>~4,200 ms</td><td>~3,100 ms</td><td>~600 MB</td></tr>
+<tr class="highlight-engine"><td><strong>SlopGuard v1.8.0 (Native Rust)</strong></td><td><strong>&lt; 3 ms</strong></td><td><strong>&lt; 0.45 ms</strong></td><td><strong>~6 MB</strong></td></tr>
+<tr><td>Biome</td><td>~45 ms</td><td>~12 ms</td><td>~28 MB</td></tr>
+<tr><td>ESLint</td><td>~620 ms</td><td>~180 ms</td><td>~140 MB</td></tr>
+<tr><td>SonarQube Scanner</td><td>~4,200 ms</td><td>~1,200 ms</td><td>~600 MB</td></tr>
 </tbody>
 </table>
 </div>
@@ -351,23 +383,28 @@ SlopGuard Enforced
 <section id="guides" class="section">
 <div class="container">
 <div class="section-intro">
-<div class="section-kicker">Integration</div>
-<h2 class="section-headline">Installation &amp; Setup</h2>
+<div class="section-kicker">v1.8.0 Release Matrix</div>
+<h2 class="section-headline">Download &amp; Installation</h2>
 </div>
 <div class="guide-cards">
 <div class="guide-box">
-<h4>Standalone Binary (v1.7.0)</h4>
-<p>Native precompiled executables:</p>
-<pre># Windows x64:
-curl -LO https://github.com/avelone123123/slopguard/releases/download/v1.7.0/slopguard-v1.7.0-windows-x64.exe
-# Linux x64:
-curl -LO https://github.com/avelone123123/slopguard/releases/download/v1.7.0/slopguard-v1.7.0-linux-x64
-# macOS arm64:
-curl -LO https://github.com/avelone123123/slopguard/releases/download/v1.7.0/slopguard-v1.7.0-macos-arm64</pre>
+<h4>Windows x64 Native</h4>
+<p>Standalone zero-dependency executable:</p>
+<pre>curl -LO https://github.com/avelone123123/slopguard/releases/download/v1.8.0/slopguard-v1.8.0-windows-x64.exe</pre>
+</div>
+<div class="guide-box">
+<h4>Linux x86_64 Native</h4>
+<p>Precompiled musl/glibc tarball:</p>
+<pre>curl -LO https://github.com/avelone123123/slopguard/releases/download/v1.8.0/slopguard-v1.8.0-linux-x86_64.tar.gz</pre>
+</div>
+<div class="guide-box">
+<h4>macOS Apple Silicon</h4>
+<p>Universal arm64 binary archive:</p>
+<pre>curl -LO https://github.com/avelone123123/slopguard/releases/download/v1.8.0/slopguard-v1.8.0-macos-aarch64.tar.gz</pre>
 </div>
 <div class="guide-box">
 <h4>Cargo Install</h4>
-<p>Build and install to your user bin directory:</p>
+<p>Build and install to user bin directory:</p>
 <pre>cargo install slopguard
 slopguard monitor</pre>
 </div>
@@ -387,16 +424,6 @@ slopguard monitor</pre>
 <h4>Claude Code</h4>
 <p>Connect the stdio MCP server:</p>
 <pre>claude mcp add slopguard slopguard mcp</pre>
-</div>
-<div class="guide-box">
-<h4>Git Pre-Commit Hook</h4>
-<p>Block unverified slop from repository commits:</p>
-<pre>slopguard hook install</pre>
-</div>
-<div class="guide-box">
-<h4>GitHub Actions CI</h4>
-<p>Generate CI workflow file automatically:</p>
-<pre>slopguard ci</pre>
 </div>
 </div>
 </div>
@@ -422,7 +449,7 @@ slopguard monitor</pre>
 </div>
 <div class="drawer-content">
 <div class="drawer-badge-row">
-<span id="drawerCategory" class="drawer-badge cat">AsyncAntiPattern</span>
+<span id="drawerCategory" class="drawer-badge cat">AsyncIterationHazard</span>
 <span class="drawer-badge lang">JavaScript / TypeScript</span>
 <span class="drawer-badge lang">Python</span>
 <span class="drawer-badge lang">Rust</span>
@@ -454,6 +481,6 @@ slopguard monitor</pre>
 </div>
 </div>
 </aside>
-<script src="app.js?v=20261031_0530"></script>
+<script src="app.js?v=20261031_0800"></script>
 </body>
 </html>

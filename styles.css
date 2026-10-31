@@ -71,6 +71,12 @@ header.site-header{position:sticky;top:0;background:rgba(9,9,11,0.85);backdrop-f
 .diff-cell-title{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:600;margin-bottom:10px;text-transform:uppercase;letter-spacing:0.4px}
 .diff-cell-title.vulnerable{color:var(--rose)}
 .diff-cell-title.enforced{color:var(--emerald)}
+.live-editor{width:100%;height:190px;background:transparent;border:none;color:#f43f5e;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:13px;line-height:1.55;resize:vertical;outline:none}
+.diag-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.diag-metric{font-size:11px;color:var(--text-dim);font-family:ui-monospace,Consolas,monospace}
+.diag-metric strong{color:var(--emerald)}
+.diag-desc{font-size:12.5px;color:var(--text-muted);margin-bottom:10px;line-height:1.5}
+.diag-pre{background:#09090c;border:1px solid var(--border-subtle);border-radius:4px;padding:12px;color:var(--emerald);font-family:ui-monospace,Consolas,monospace;font-size:12px;overflow-x:auto}
 .rules-matrix{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px}
 .rule-card{background:var(--card);border:1px solid var(--border-subtle);border-radius:6px;padding:16px;cursor:pointer;transition:border-color .15s,transform .15s}
 .rule-card:hover{border-color:var(--card-border);transform:translateY(-1px)}
