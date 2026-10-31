@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SlopGuard v1.9.0 - The Native AI Slop Firewall</title>
+<title>SlopGuard v2.0.0 - The Native AI Slop Firewall</title>
 <link rel="icon" type="image/svg+xml" href="assets/icon.svg">
-<link rel="stylesheet" href="styles.css?v=20261031_0900">
+<link rel="stylesheet" href="styles.css?v=20261101_0200">
 </head>
 <body>
 <header class="site-header">
@@ -25,7 +25,7 @@
 <a href="https://discord.gg/z7C9dprye" target="_blank" class="btn btn-secondary">Discord</a>
 <a href="https://t.me/SlopGuard" target="_blank" class="btn btn-secondary">Telegram</a>
 <a href="https://github.com/avelone123123/slopguard" target="_blank" class="btn btn-secondary">GitHub</a>
-<a href="https://github.com/avelone123123/slopguard/releases/tag/v1.9.0" target="_blank" class="btn btn-primary">v1.9.0</a>
+<a href="https://github.com/avelone123123/slopguard/releases/tag/v2.0.0" target="_blank" class="btn btn-primary">v2.0.0</a>
 </div>
 </div>
 </header>
@@ -34,19 +34,19 @@
 <div class="container">
 <div class="pill">
 <span class="pill-dot"></span>
-<span>SlopGuard v1.9.0 &middot; 100% Native Rust AST Engine</span>
+<span>SlopGuard v2.0.0 &middot; 100% Native Rust AST Engine</span>
 </div>
 <h1 class="hero-title">The Codebase Firewall for AI Coding Agents</h1>
 <p class="hero-sub">Intercept hallucinations, speculative packages, silent async traps, and leaked credentials before git commit. Sub-millisecond latency powered by pure Rust.</p>
 <div class="hero-actions">
 <div class="cli-box">
 <span class="cli-prefix">$</span>
-<code class="cli-code" id="cargoCmd">cargo install slopguard --version 1.9.0</code>
+<code class="cli-code" id="cargoCmd">cargo install slopguard --version 2.0.0</code>
 <button class="copy-icon-btn" onclick="copyText('cargoCmd', this)">
 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
 </button>
 </div>
-<a href="https://github.com/avelone123123/slopguard/releases/download/v1.9.0/slopguard-v1.9.0-windows-x64.exe" class="btn btn-primary">Download slopguard-v1.9.0.exe</a>
+<a href="https://github.com/avelone123123/slopguard/releases/download/v2.0.0/slopguard-v2.0.0-windows-x64.exe" class="btn btn-primary">Download slopguard-v2.0.0.exe</a>
 <a href="https://discord.gg/z7C9dprye" target="_blank" class="btn btn-secondary">Join Discord</a>
 <a href="https://t.me/SlopGuard" target="_blank" class="btn btn-secondary">Telegram Channel</a>
 <a href="https://github.com/avelone123123/slopguard" target="_blank" class="btn btn-secondary">Star on GitHub</a>
@@ -214,19 +214,24 @@ Unified Git Diff Auditor
 <div class="section-kicker">Detection Engine</div>
 <h2 class="section-headline">46 Active AST Firewalls</h2>
 </div>
-<div class="rules-matrix">
-<div class="rule-card" onclick="openRuleDrawer('no-hallucinated-package-manifest')"><div class="rule-top-row"><span class="rule-identifier"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ff3366" stroke-width="2" style="vertical-align:-2px;margin-right:6px"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>no-hallucinated-package-manifest</span><span class="severity-pill error">CRITICAL / ERROR</span></div><div class="rule-summary">Zero-trust supply-chain firewall: halts AI-hallucinated composite package names, unpinned wildcards, and slopsquatted dependencies (THREAT-01).</div></div>
-<div class="rule-card" onclick="openRuleDrawer('no-deep-path-traversal')"><div class="rule-top-row"><span class="rule-identifier"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ff3366" stroke-width="2" style="vertical-align:-2px;margin-right:6px"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="M12 8v4"></path><path d="M12 16h.01"></path></svg>no-deep-path-traversal</span><span class="severity-pill error">CRITICAL / ERROR</span></div><div class="rule-summary">Halts multi-encoded path traversals (%2e%2e/), zip-slip extraction attacks, and unconstrained file joins without boundary guards (THREAT-04).</div></div>
-<div class="rule-card" onclick="openRuleDrawer('no-unawaited-async-in-loops')"><div class="rule-top-row"><span class="rule-identifier"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ff3366" stroke-width="2" style="vertical-align:-2px;margin-right:6px"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>no-unawaited-async-in-loops</span><span class="severity-pill error">CRITICAL / ERROR</span></div><div class="rule-summary">Halts unawaited async calls inside loops and sync iterators (.forEach, map coroutines) preventing promise drops and socket leaks (THREAT-02).</div></div>
-<div class="rule-card" onclick="openRuleDrawer('no-insecure-prng-tokens')"><div class="rule-top-row"><span class="rule-identifier"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ff3366" stroke-width="2" style="vertical-align:-2px;margin-right:6px"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>no-insecure-prng-tokens</span><span class="severity-pill error">CRITICAL / ERROR</span></div><div class="rule-summary">Halts non-cryptographic PRNGs (Math.random, Python random, rand::thread_rng) used in sensitive tokens, sessions, nonces, and secrets (THREAT-03).</div></div>
-<div class="rule-card" onclick="openRuleDrawer('no-unsafe-deserialization')"><div class="rule-top-row"><span class="rule-identifier"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ff3366" stroke-width="2" style="vertical-align:-2px;margin-right:6px"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>no-unsafe-deserialization</span><span class="severity-pill error">CRITICAL / ERROR</span></div><div class="rule-summary">Intercepts insecure object deserialization (Python pickle/marshal/yaml.load, node-serialize, PHP unserialize, Ruby Marshal.load) (THREAT-05).</div></div>
-<div class="rule-card"><div class="rule-top-row"><span class="rule-identifier"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00f2fe" stroke-width="2" style="vertical-align:-2px;margin-right:6px"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>no-speculative-orm-methods</span><span class="severity-pill error">CRITICAL / ERROR</span></div><div class="rule-summary">Catches speculative ORM/ODM method hallucinations synthesized by AI coders across TypeScript, Python, and Rust.</div></div>
-<div class="rule-card"><div class="rule-top-row"><span class="rule-identifier"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" style="vertical-align:-2px;margin-right:6px"><line x1="6" y1="3" x2="6" y2="15"></line><circle cx="18" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><path d="M18 9a9 9 0 0 1-9 9"></path></svg>no-async-pipeline-races</span><span class="severity-pill warn">WARNING</span></div><div class="rule-summary">Detects unshielded Promise.race, unmonitored Node.js stream pipes without error handlers, and unhandled asyncio task batches prone to resource leaks.</div></div>
-<div class="rule-card"><div class="rule-top-row"><span class="rule-identifier"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ff3366" stroke-width="2" style="vertical-align:-2px;margin-right:6px"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>no-phantom-cloud-sdks</span><span class="severity-pill error">CRITICAL / ERROR</span></div><div class="rule-summary">Quarantines phantom cloud SDK dependencies hallucinated by LLMs and injected into package manifests.</div></div>
-<div class="rule-card"><div class="rule-top-row"><span class="rule-identifier"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ff3366" stroke-width="2" style="vertical-align:-2px;margin-right:6px"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>no-hallucinated-speculative-apis</span><span class="severity-pill error">CRITICAL / ERROR</span></div><div class="rule-summary">Catches hallucinated standard library APIs that do not exist (json.loadf, os.path.joinpath, crypto.randomUUIDv4, fs.writeJsonSync, Vec::push_all).</div></div>
-<div class="rule-card"><div class="rule-top-row"><span class="rule-identifier"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" style="vertical-align:-2px;margin-right:6px"><line x1="6" y1="3" x2="6" y2="15"></line><circle cx="18" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><path d="M18 9a9 9 0 0 1-9 9"></path></svg>no-unbounded-concurrency</span><span class="severity-pill warn">WARNING</span></div><div class="rule-summary">Halts unthrottled concurrent iterations (Promise.all over .map, asyncio.gather without semaphore, join_all without backpressure) preventing EMFILE socket exhaustion.</div></div>
-<div class="rule-card"><div class="rule-top-row"><span class="rule-identifier"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ff3366" stroke-width="2" style="vertical-align:-2px;margin-right:6px"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="M12 8v4"></path><path d="M12 16h.01"></path></svg>no-test-sabotage</span><span class="severity-pill error">CRITICAL / ERROR</span></div><div class="rule-summary">Halts AI reward hacking and test suite sabotage: intercepts skipped tests (it.skip, @pytest.mark.skip) and test isolation traps.</div></div>
-<div class="rule-card"><div class="rule-top-row"><span class="rule-identifier"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ff3366" stroke-width="2" style="vertical-align:-2px;margin-right:6px"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>no-insecure-crypto</span><span class="severity-pill error">CRITICAL / ERROR</span></div><div class="rule-summary">Halts non-cryptographic PRNGs for auth credentials and intercepts legacy broken hash digests (MD5, SHA-1) in credential workflows.</div></div>
+<div class="rules-hub">
+<div class="hub-control-panel">
+<div class="hub-filter-tabs">
+<button class="hub-tab-btn active" onclick="setFirewallCategory('all', this)">All Shields <span class="hub-tab-count" id="countAll">46</span></button>
+<button class="hub-tab-btn" onclick="setFirewallCategory('supply-chain', this)">Supply Chain <span class="hub-tab-count" id="countSupply">8</span></button>
+<button class="hub-tab-btn" onclick="setFirewallCategory('async-concurrency', this)">Async / Concurrency <span class="hub-tab-count" id="countAsync">9</span></button>
+<button class="hub-tab-btn" onclick="setFirewallCategory('crypto-auth', this)">Crypto &amp; Auth <span class="hub-tab-count" id="countCrypto">10</span></button>
+<button class="hub-tab-btn" onclick="setFirewallCategory('path-injection', this)">Path &amp; Injection <span class="hub-tab-count" id="countPath">11</span></button>
+<button class="hub-tab-btn" onclick="setFirewallCategory('code-quality', this)">Code Quality &amp; Sabotage <span class="hub-tab-count" id="countQuality">8</span></button>
+</div>
+<div class="hub-search-box">
+<svg class="hub-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+<input id="firewallSearch" class="hub-search-input" type="text" placeholder="Search 46 AST rules, threat codes, or CWEs..." oninput="handleFirewallSearch(this.value)">
+</div>
+</div>
+<div class="rules-viewport" id="rulesViewport">
+<div class="rules-matrix" id="rulesGrid"></div>
+</div>
 </div>
 </div>
 </section>
@@ -242,7 +247,7 @@ Unified Git Diff Auditor
 <tr><th>Tool</th><th>Startup Latency</th><th>Scan Time (1k LOC)</th><th>Memory Footprint</th></tr>
 </thead>
 <tbody>
-<tr class="highlight-engine"><td><strong>SlopGuard v1.9.0 (Native Rust)</strong></td><td><strong>&lt; 2.5 ms</strong></td><td><strong>&lt; 0.38 ms</strong></td><td><strong>~5.8 MB</strong></td></tr>
+<tr class="highlight-engine"><td><strong>SlopGuard v2.0.0 (Native Rust)</strong></td><td><strong>&lt; 2.5 ms</strong></td><td><strong>&lt; 0.38 ms</strong></td><td><strong>~5.8 MB</strong></td></tr>
 <tr><td>Biome</td><td>~45 ms</td><td>~12 ms</td><td>~28 MB</td></tr>
 <tr><td>ESLint</td><td>~620 ms</td><td>~180 ms</td><td>~140 MB</td></tr>
 <tr><td>SonarQube Scanner</td><td>~4,200 ms</td><td>~1,200 ms</td><td>~600 MB</td></tr>
@@ -254,29 +259,29 @@ Unified Git Diff Auditor
 <section id="guides" class="section">
 <div class="container">
 <div class="section-intro">
-<div class="section-kicker">v1.9.0 Release Matrix</div>
+<div class="section-kicker">v2.0.0 Release Matrix</div>
 <h2 class="section-headline">Distribution Center &amp; Installation</h2>
 </div>
 <div class="guide-cards">
 <div class="guide-box">
 <h4>Windows x64 Native</h4>
 <p>Standalone zero-dependency executable:</p>
-<pre>curl -LO https://github.com/avelone123123/slopguard/releases/download/v1.9.0/slopguard-v1.9.0-windows-x64.exe</pre>
+<pre>curl -LO https://github.com/avelone123123/slopguard/releases/download/v2.0.0/slopguard-v2.0.0-windows-x64.exe</pre>
 </div>
 <div class="guide-box">
 <h4>Linux x86_64 Native</h4>
 <p>Precompiled musl/glibc tarball:</p>
-<pre>curl -LO https://github.com/avelone123123/slopguard/releases/download/v1.9.0/slopguard-v1.9.0-linux-x86_64.tar.gz</pre>
+<pre>curl -LO https://github.com/avelone123123/slopguard/releases/download/v2.0.0/slopguard-v2.0.0-linux-x86_64.tar.gz</pre>
 </div>
 <div class="guide-box">
 <h4>macOS Apple Silicon</h4>
 <p>Universal arm64 binary archive:</p>
-<pre>curl -LO https://github.com/avelone123123/slopguard/releases/download/v1.9.0/slopguard-v1.9.0-macos-aarch64.tar.gz</pre>
+<pre>curl -LO https://github.com/avelone123123/slopguard/releases/download/v2.0.0/slopguard-v2.0.0-macos-aarch64.tar.gz</pre>
 </div>
 <div class="guide-box">
 <h4>Cargo Quickstart</h4>
 <p>Build and install to user bin directory:</p>
-<pre>cargo install slopguard --version 1.9.0
+<pre>cargo install slopguard --version 2.0.0
 slopguard monitor</pre>
 </div>
 <div class="guide-box">
@@ -299,8 +304,8 @@ slopguard monitor</pre>
 </div>
 <div class="checksum-box">
 <div>
-<div class="checksum-label">SHA-256 Checksum (slopguard-v1.9.0-windows-x64.exe)</div>
-<div class="checksum-code" id="checksumCode">0663DE793DFEA8E06A62DC17568B1F9FD348A2A3998F4FC7E71EC3DF503FD3EF</div>
+<div class="checksum-label">SHA-256 Checksum (slopguard-v2.0.0-windows-x64.exe)</div>
+<div class="checksum-code" id="checksumCode">E615104B755CB19F557A52A152B7A82734AA253A8FEA32D7FF6AD46DAEB8BB48</div>
 </div>
 <button class="btn btn-secondary" onclick="copyText('checksumCode', this)">Copy SHA-256</button>
 </div>
@@ -360,6 +365,6 @@ slopguard monitor</pre>
 </div>
 </div>
 </aside>
-<script src="app.js?v=20261031_0900"></script>
+<script src="app.js?v=20261101_0200"></script>
 </body>
 </html>
