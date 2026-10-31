@@ -120,7 +120,7 @@ footer.site-footer a:hover{color:var(--white)}
 </nav>
 <div style="display:flex;align-items:center;gap:10px">
 <a href="https://github.com/avelone123123/slopguard" target="_blank" class="btn btn-secondary">GitHub</a>
-<a href="https://github.com/avelone123123/slopguard/releases/tag/v1.0.0" target="_blank" class="btn btn-primary">Download v1.0.0</a>
+<a href="https://github.com/avelone123123/slopguard/releases/tag/v1.3.0" target="_blank" class="btn btn-primary">Download v1.3.0</a>
 </div>
 </div>
 </header>
@@ -129,7 +129,7 @@ footer.site-footer a:hover{color:var(--white)}
 <div class="container">
 <div class="pill">
 <span class="pill-dot"></span>
-<span>SlopGuard v1.0.0 &middot; 100% Native Rust AST Engine</span>
+<span>SlopGuard v1.3.0 &middot; 100% Native Rust AST Engine</span>
 </div>
 <h1 class="hero-title">The Codebase Firewall for AI Coding Agents</h1>
 <p class="hero-sub">Intercept hallucinations, broken imports, phantom API calls, and leaked keys before they reach git commit. Sub-millisecond latency powered by pure Rust.</p>
@@ -141,13 +141,13 @@ footer.site-footer a:hover{color:var(--white)}
 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
 </button>
 </div>
-<a href="https://github.com/avelone123123/slopguard/releases/latest/download/slopguard-windows-x64.exe" class="btn btn-primary">Download slopguard.exe</a>
+<a href="https://github.com/avelone123123/slopguard/releases/download/v1.3.0/slopguard-v1.3.0-windows-x64.exe" class="btn btn-primary">Download slopguard (v1.3.0)</a>
 <a href="https://github.com/avelone123123/slopguard" target="_blank" class="btn btn-secondary">Star on GitHub</a>
 </div>
 <div class="tech-pills">
 <div class="tech-pill">Engine: <strong>100% Pure Rust</strong></div>
 <div class="tech-pill">Protocol: <strong>MCP JSON-RPC 2.0</strong></div>
-<div class="tech-pill">Firewalls: <strong>34 Active AST Rules</strong></div>
+<div class="tech-pill">Firewalls: <strong>36 Active Shields</strong></div>
 <div class="tech-pill">Startup: <strong>&lt; 3ms</strong></div>
 <div class="tech-pill">License: <strong>MIT Open Source</strong></div>
 </div>
@@ -235,6 +235,7 @@ footer.site-footer a:hover{color:var(--white)}
 <button class="tab-btn" onclick="switchScenario('test_sabotage', this)">Test Sabotage / .skip()</button>
 <button class="tab-btn" onclick="switchScenario('unbounded_concurrency', this)">Unbounded Concurrency</button>
 <button class="tab-btn" onclick="switchScenario('async_trap', this)">Async in Sync Iterators</button>
+<button class="tab-btn" onclick="switchScenario('speculative-api', this)">SLOP-035: Speculative APIs</button>
 </div>
 <div class="diff-columns">
 <div class="diff-cell">
@@ -267,9 +268,11 @@ SlopGuard Enforced
 <div class="container">
 <div class="section-intro">
 <div class="section-kicker">Detection Engine</div>
-<h2 class="section-headline">34 Active AST Firewalls</h2>
+<h2 class="section-headline">36 Active AST Firewalls</h2>
 </div>
 <div class="rules-matrix">
+<div class="rule-card"><div class="rule-top-row"><span class="rule-identifier"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:6px"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>no-hallucinated-speculative-apis</span><span class="severity-pill error">CRITICAL / ERROR</span></div><div class="rule-summary">Catches hallucinated standard library APIs that do not exist (json.loadf, os.path.joinpath, crypto.randomUUIDv4, fs.writeJsonSync, Vec::push_all).</div></div>
+<div class="rule-card"><div class="rule-top-row"><span class="rule-identifier"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:6px"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>no-insecure-prng-tokens</span><span class="severity-pill error">CRITICAL / ERROR</span></div><div class="rule-summary">Halts non-cryptographic PRNGs (Math.random, Python random, rand::thread_rng) used in sensitive tokens, secrets, session IDs, and nonce generations (CWE-330).</div></div>
 <div class="rule-card"><div class="rule-top-row"><span class="rule-identifier"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:6px"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>no-async-in-sync-callbacks</span><span class="severity-pill error">CRITICAL / ERROR</span></div><div class="rule-summary">Halts unawaited async callbacks in synchronous iterators (.forEach, map/filter coroutines, Rust .for_each async move) that drop promises and silently fail concurrency guarantees.</div></div>
 <div class="rule-card" onclick="openRuleDrawer('no-unbounded-concurrency')"><div class="rule-top-row"><span class="rule-identifier"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:6px"><line x1="6" y1="3" x2="6" y2="15"></line><circle cx="18" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><path d="M18 9a9 9 0 0 1-9 9"></path></svg>no-unbounded-concurrency</span><span class="severity-pill warn">WARNING</span></div><div class="rule-summary">Halts unthrottled concurrent iterations (Promise.all over .map, asyncio.gather without semaphore, join_all without backpressure) preventing EMFILE socket exhaustion and microtask heap thrashing.</div></div>
 <div class="rule-card"><div class="rule-top-row"><span class="rule-identifier"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:6px"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="M12 8v4"></path><path d="M12 16h.01"></path></svg>no-test-sabotage</span><span class="severity-pill error">CRITICAL / ERROR</span></div><div class="rule-summary">Halts AI reward hacking and test suite sabotage: intercepts skipped tests (it.skip, @pytest.mark.skip), test isolation traps (test.only, fit), and Rust #[ignore] attributes in test suites.</div></div>
@@ -337,10 +340,14 @@ SlopGuard Enforced
 </div>
 <div class="guide-cards">
 <div class="guide-box">
-<h4>Standalone Binary</h4>
-<p>Windows x64 executable with zero dependencies:</p>
-<pre>curl -LO https://github.com/avelone123123/slopguard/releases/latest/download/slopguard-windows-x64.exe
-.\slopguard-windows-x64.exe</pre>
+<h4>Standalone Binary (v1.3.0)</h4>
+<p>Native precompiled executables:</p>
+<pre># Windows x64:
+curl -LO https://github.com/avelone123123/slopguard/releases/download/v1.3.0/slopguard-v1.3.0-windows-x64.exe
+# Linux x64:
+curl -LO https://github.com/avelone123123/slopguard/releases/download/v1.3.0/slopguard-v1.3.0-linux-x64
+# macOS arm64:
+curl -LO https://github.com/avelone123123/slopguard/releases/download/v1.3.0/slopguard-v1.3.0-macos-arm64</pre>
 </div>
 <div class="guide-box">
 <h4>Cargo Install</h4>
@@ -382,7 +389,7 @@ slopguard monitor</pre>
 <footer class="site-footer">
 <div class="container">
 <p style="margin-bottom:8px">SlopGuard &middot; Open Source under MIT License &middot; 100% Pure Rust</p>
-<p><a href="https://github.com/avelone123123/slopguard" target="_blank">GitHub</a> &middot; <a href="https://github.com/avelone123123/slopguard/releases/tag/v1.0.0" target="_blank">Releases</a> &middot; <a href="https://github.com/avelone123123/slopguard/issues" target="_blank">Issues</a></p>
+<p><a href="https://github.com/avelone123123/slopguard" target="_blank">GitHub</a> &middot; <a href="https://github.com/avelone123123/slopguard/releases/tag/v1.3.0" target="_blank">Releases</a> &middot; <a href="https://github.com/avelone123123/slopguard/issues" target="_blank">Issues</a></p>
 </div>
 </footer>
 <div id="ruleDrawerBackdrop" class="drawer-backdrop" onclick="closeRuleDrawer()"></div>
