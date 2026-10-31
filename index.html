@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SlopGuard v2.4.0 - The Native AI Slop Firewall</title>
+<title>SlopGuard v2.5.0 - The Native AI Slop Firewall</title>
 <link rel="icon" type="image/svg+xml" href="assets/icon.svg">
-<link rel="stylesheet" href="styles.css?v=20261101_0400">
+<link rel="stylesheet" href="styles.css?v=20261101_0500">
 </head>
 <body>
 <header class="site-header">
@@ -25,7 +25,7 @@
 <a href="https://discord.gg/z7C9dprye" target="_blank" class="btn btn-secondary">Discord</a>
 <a href="https://t.me/SlopGuard" target="_blank" class="btn btn-secondary">Telegram</a>
 <a href="https://github.com/avelone123123/slopguard" target="_blank" class="btn btn-secondary">GitHub</a>
-<a href="https://github.com/avelone123123/slopguard/releases/tag/v2.4.0" target="_blank" class="btn btn-primary">v2.4.0</a>
+<a href="https://github.com/avelone123123/slopguard/releases/tag/v2.5.0" target="_blank" class="btn btn-primary">v2.5.0</a>
 </div>
 </div>
 </header>
@@ -34,19 +34,19 @@
 <div class="container">
 <div class="pill">
 <span class="pill-dot"></span>
-<span>SlopGuard v2.4.0 &middot; 100% Native Rust AST Engine</span>
+<span>SlopGuard v2.5.0 &middot; 100% Native Rust AST Engine</span>
 </div>
 <h1 class="hero-title">The Codebase Firewall for AI Coding Agents</h1>
 <p class="hero-sub">Intercept hallucinations, speculative packages, silent async traps, and leaked credentials before git commit. Sub-millisecond latency powered by pure Rust.</p>
 <div class="hero-actions">
 <div class="cli-box">
 <span class="cli-prefix">$</span>
-<code class="cli-code" id="cargoCmd">cargo install slopguard --version 2.4.0</code>
+<code class="cli-code" id="cargoCmd">cargo install slopguard --version 2.5.0</code>
 <button class="copy-icon-btn" onclick="copyText('cargoCmd', this)">
 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
 </button>
 </div>
-<a href="https://github.com/avelone123123/slopguard/releases/download/v2.4.0/slopguard-v2.4.0-windows-x64.exe" class="btn btn-primary">Download slopguard-v2.4.0.exe</a>
+<a href="https://github.com/avelone123123/slopguard/releases/download/v2.5.0/slopguard-v2.5.0-windows-x64.exe" class="btn btn-primary">Download slopguard-v2.5.0.exe</a>
 <a href="https://discord.gg/z7C9dprye" target="_blank" class="btn btn-secondary">Join Discord</a>
 <a href="https://t.me/SlopGuard" target="_blank" class="btn btn-secondary">Telegram Channel</a>
 <a href="https://github.com/avelone123123/slopguard" target="_blank" class="btn btn-secondary">Star on GitHub</a>
@@ -127,19 +127,19 @@
 <div class="feature-desc">Unawaited promises inside loops and unshielded async concurrency cause unbounded socket exhaustion and memory thrashing under load.</div>
 </div>
 <div class="feature-card">
+<svg class="feature-svg" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+<div class="feature-name">Polymorphic Deserialization (THREAT-03)</div>
+<div class="feature-desc">Arbitrary gadget execution via yaml.Loader, pickle.loads, marshal.loads, and Java ObjectInputStream evaluated by agents.</div>
+</div>
+<div class="feature-card">
 <svg class="feature-svg" viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-<div class="feature-name">Insecure PRNG Token Generation (THREAT-03)</div>
-<div class="feature-desc">Autonomous code agents substitute cryptographically insecure PRNGs (Math.random, Python random) for auth tokens and session IDs.</div>
+<div class="feature-name">Broken Cryptographic Entropy (THREAT-04)</div>
+<div class="feature-desc">Weak pseudo-random number generators (Math.random, random.random, static seeds) used in authentication, salts, and session tokens.</div>
 </div>
 <div class="feature-card">
 <svg class="feature-svg" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="M12 8v4"></path><path d="M12 16h.01"></path></svg>
-<div class="feature-name">Deep Path Traversal &amp; Zip Slip (THREAT-04)</div>
-<div class="feature-desc">Unsanitized path joins without boundary containment or canonicalization permit attackers to escape sandbox constraints.</div>
-</div>
-<div class="feature-card">
-<svg class="feature-svg" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
-<div class="feature-name">Polyglot Unsafe Deserialization (THREAT-05)</div>
-<div class="feature-desc">Insecure object hydration (pickle.loads, yaml.unsafe_load, node-serialize) evaluated by agents leads directly to arbitrary remote code execution.</div>
+<div class="feature-name">Evasive Path Traversal (THREAT-05)</div>
+<div class="feature-desc">Unconstrained file resolution (path.join, path.resolve) without canonical root boundary verification permitting sandbox escape.</div>
 </div>
 <div class="feature-card">
 <svg class="feature-svg" viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
@@ -173,19 +173,32 @@ Unified Git Diff Auditor
 <label class="rule-toggle-item"><input type="checkbox" checked onchange="toggleRuleFilter('no-deep-path-traversal', this.checked)">no-deep-path-traversal</label>
 <label class="rule-toggle-item"><input type="checkbox" checked onchange="toggleRuleFilter('no-unsafe-deserialization', this.checked)">no-unsafe-deserialization</label>
 </div>
+<div class="score-card">
+<div class="score-gauge" id="scoreGauge" style="color:#f43f5e">70/100</div>
+<div class="score-meta">
+<span class="score-title">Live Codebase Health Score</span>
+<span class="score-status" id="scoreStatus">Formula: max(0, 100 - (errors &times; 15 + warnings &times; 5)) &middot; 2 Errors Detected</span>
+</div>
+<div style="margin-left:auto;display:flex;gap:8px">
+<button class="one-click-fix-btn" id="oneClickFixBtn" onclick="applySanitizedFix()">
+<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+Apply Clean Refactor
+</button>
+</div>
+</div>
 <div class="playground-selectors">
 <button class="tab-btn active" onclick="switchScenario('scenario_a', this)">THREAT-01: Manifest Poisoning</button>
-<button class="tab-btn" onclick="switchScenario('scenario_b', this)">THREAT-04: Path Traversal</button>
+<button class="tab-btn" onclick="switchScenario('scenario_b', this)">THREAT-05: Path Traversal</button>
 <button class="tab-btn" onclick="switchScenario('scenario_c', this)">THREAT-02: Async Loop Traps</button>
-<button class="tab-btn" onclick="switchScenario('scenario_d', this)">THREAT-03: Insecure PRNG</button>
-<button class="tab-btn" onclick="switchScenario('scenario_e', this)">THREAT-05: Deserialization</button>
+<button class="tab-btn" onclick="switchScenario('scenario_d', this)">THREAT-04: Insecure PRNG</button>
+<button class="tab-btn" onclick="switchScenario('scenario_e', this)">THREAT-03: Deserialization</button>
 <button class="tab-btn" onclick="switchScenario('scenario_ide', this)">SLOP-055: IDE Protocol</button>
 <button class="tab-btn" onclick="switchScenario('diff_mode', this)">Unified Git Diff</button>
 </div>
 <div class="diff-columns">
 <div class="diff-cell">
 <div class="diff-cell-title vulnerable">
-<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ff3366" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
 <span>Live Code Input (Editable)</span>
 <span id="editorStatusBadge" class="tag-badge blocked" style="margin-left:auto">BLOCKED (0.38ms)</span>
 </div>
@@ -215,6 +228,28 @@ Unified Git Diff Auditor
     "react-hot-toast": "^2.4.1"
   }
 }</pre>
+</div>
+</div>
+<div class="diff-split" id="diffSplitView">
+<div class="diff-left">
+<div class="diff-pane-header">
+<span style="color:#f43f5e;display:flex;align-items:center;gap:6px">
+<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+Vulnerable Diff Hunk
+</span>
+<span id="leftHunkCount" class="hunk-tag error">Active Violation</span>
+</div>
+<div class="diff-lines" id="diffLeftLines"></div>
+</div>
+<div class="diff-right">
+<div class="diff-pane-header">
+<span style="color:#10b981;display:flex;align-items:center;gap:6px">
+<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+Sanitized Diff Hunk
+</span>
+<span class="hunk-tag clean">AST Safe</span>
+</div>
+<div class="diff-lines" id="diffRightLines"></div>
 </div>
 </div>
 </div>
