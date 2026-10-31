@@ -147,7 +147,7 @@ footer.site-footer a:hover{color:var(--white)}
 <div class="tech-pills">
 <div class="tech-pill">Engine: <strong>100% Pure Rust</strong></div>
 <div class="tech-pill">Protocol: <strong>MCP JSON-RPC 2.0</strong></div>
-<div class="tech-pill">Firewalls: <strong>31 Active AST Rules</strong></div>
+<div class="tech-pill">Firewalls: <strong>32 Active AST Rules</strong></div>
 <div class="tech-pill">Startup: <strong>&lt; 3ms</strong></div>
 <div class="tech-pill">License: <strong>MIT Open Source</strong></div>
 </div>
@@ -231,6 +231,7 @@ footer.site-footer a:hover{color:var(--white)}
 <button class="tab-btn" onclick="switchScenario('cors', this)">Permissive Wildcard CORS</button>
 <button class="tab-btn" onclick="switchScenario('async_pred', this)">Async Array Predicate Trap</button>
 <button class="tab-btn" onclick="switchScenario('inlined_secret', this)">Public Inlined Secret</button>
+<button class="tab-btn" onclick="switchScenario('crypto', this)">Insecure PRNG / Hash</button>
 </div>
 <div class="diff-columns">
 <div class="diff-cell">
@@ -263,9 +264,10 @@ SlopGuard Enforced
 <div class="container">
 <div class="section-intro">
 <div class="section-kicker">Detection Engine</div>
-<h2 class="section-headline">31 Active AST Firewalls</h2>
+<h2 class="section-headline">32 Active AST Firewalls</h2>
 </div>
 <div class="rules-matrix">
+<div class="rule-card"><div class="rule-top-row"><span class="rule-identifier"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:6px"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>no-insecure-crypto</span><span class="severity-pill error">CRITICAL / ERROR</span></div><div class="rule-summary">Halts non-cryptographic PRNGs (Math.random, random.choice) for auth tokens/secrets (CWE-330) and intercepts legacy broken hash digests (MD5, SHA-1) in credential workflows (CWE-328).</div></div>
 <div class="rule-card"><div class="rule-top-row"><span class="rule-identifier"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:6px"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>no-inlined-secrets</span><span class="severity-pill error">CRITICAL / ERROR</span></div><div class="rule-summary">Halts public client prefixes (NEXT_PUBLIC_, VITE_, REACT_APP_) exposing database service roles, secret keys, or admin tokens in client bundles.</div></div>
 <div class="rule-card"><div class="rule-top-row"><span class="rule-identifier"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" style="vertical-align:-2px;margin-right:6px"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>no-slopsquat-deps</span><span class="severity-pill warn">WARNING</span></div><div class="rule-summary">Detects AI-hallucinated and slopsquatted dependency declarations in package.json, requirements.txt, and Cargo.toml before malicious packages install.</div></div>
 <div class="rule-card"><div class="rule-top-row"><span class="rule-identifier"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:6px"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>no-async-array-predicates</span><span class="severity-pill error">CRITICAL / ERROR</span></div><div class="rule-summary">Prevents async predicate functions in .filter()/.some()/.every()/.find() where promises unconditionally evaluate to truthy, bypassing authentication and validation gates.</div></div>
