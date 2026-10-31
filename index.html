@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SlopGuard v2.1.0 - The Native AI Slop Firewall</title>
+<title>SlopGuard v2.2.0 - The Native AI Slop Firewall</title>
 <link rel="icon" type="image/svg+xml" href="assets/icon.svg">
-<link rel="stylesheet" href="styles.css?v=20261101_0210">
+<link rel="stylesheet" href="styles.css?v=20261101_0400">
 </head>
 <body>
 <header class="site-header">
@@ -25,7 +25,7 @@
 <a href="https://discord.gg/z7C9dprye" target="_blank" class="btn btn-secondary">Discord</a>
 <a href="https://t.me/SlopGuard" target="_blank" class="btn btn-secondary">Telegram</a>
 <a href="https://github.com/avelone123123/slopguard" target="_blank" class="btn btn-secondary">GitHub</a>
-<a href="https://github.com/avelone123123/slopguard/releases/tag/v2.1.0" target="_blank" class="btn btn-primary">v2.1.0</a>
+<a href="https://github.com/avelone123123/slopguard/releases/tag/v2.2.0" target="_blank" class="btn btn-primary">v2.2.0</a>
 </div>
 </div>
 </header>
@@ -34,19 +34,19 @@
 <div class="container">
 <div class="pill">
 <span class="pill-dot"></span>
-<span>SlopGuard v2.1.0 &middot; 100% Native Rust AST Engine</span>
+<span>SlopGuard v2.2.0 &middot; 100% Native Rust AST Engine</span>
 </div>
 <h1 class="hero-title">The Codebase Firewall for AI Coding Agents</h1>
 <p class="hero-sub">Intercept hallucinations, speculative packages, silent async traps, and leaked credentials before git commit. Sub-millisecond latency powered by pure Rust.</p>
 <div class="hero-actions">
 <div class="cli-box">
 <span class="cli-prefix">$</span>
-<code class="cli-code" id="cargoCmd">cargo install slopguard --version 2.1.0</code>
+<code class="cli-code" id="cargoCmd">cargo install slopguard --version 2.2.0</code>
 <button class="copy-icon-btn" onclick="copyText('cargoCmd', this)">
 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
 </button>
 </div>
-<a href="https://github.com/avelone123123/slopguard/releases/download/v2.1.0/slopguard-v2.1.0-windows-x64.exe" class="btn btn-primary">Download slopguard-v2.1.0.exe</a>
+<a href="https://github.com/avelone123123/slopguard/releases/download/v2.2.0/slopguard-v2.2.0-windows-x64.exe" class="btn btn-primary">Download slopguard-v2.2.0.exe</a>
 <a href="https://discord.gg/z7C9dprye" target="_blank" class="btn btn-secondary">Join Discord</a>
 <a href="https://t.me/SlopGuard" target="_blank" class="btn btn-secondary">Telegram Channel</a>
 <a href="https://github.com/avelone123123/slopguard" target="_blank" class="btn btn-secondary">Star on GitHub</a>
@@ -78,6 +78,17 @@
 <div class="stat-item">
 <span class="stat-subhead">Engine Latency</span>
 <span class="stat-main">0.38 ms <span style="font-size:12px;color:#94a3b8;font-weight:400">(Rust Native)</span></span>
+<div class="flamegraph-badge" title="Sub-millisecond AST Verification Latency">
+<svg width="220" height="28" viewBox="0 0 220 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="220" height="28" rx="4" fill="#111113" stroke="#27272a"/>
+<rect x="6" y="6" width="38" height="16" rx="2" fill="#22c55e" fill-opacity="0.15" stroke="#22c55e"/>
+<text x="14" y="18" fill="#22c55e" font-family="monospace" font-size="10" font-weight="700">0.38ms</text>
+<rect x="50" y="6" width="80" height="16" rx="2" fill="#3b82f6" fill-opacity="0.15" stroke="#3b82f6"/>
+<text x="56" y="18" fill="#3b82f6" font-family="monospace" font-size="9">AST PARSE 0.22ms</text>
+<rect x="136" y="6" width="78" height="16" rx="2" fill="#a855f7" fill-opacity="0.15" stroke="#a855f7"/>
+<text x="142" y="18" fill="#a855f7" font-family="monospace" font-size="9">INVARIANTS 0.16ms</text>
+</svg>
+</div>
 <span class="stat-note">Zero runtime dependencies</span>
 </div>
 </div>
@@ -247,7 +258,7 @@ Unified Git Diff Auditor
 <tr><th>Tool</th><th>Startup Latency</th><th>Scan Time (1k LOC)</th><th>Memory Footprint</th></tr>
 </thead>
 <tbody>
-<tr class="highlight-engine"><td><strong>SlopGuard v2.1.0 (Native Rust)</strong></td><td><strong>&lt; 2.5 ms</strong></td><td><strong>&lt; 0.38 ms</strong></td><td><strong>~5.8 MB</strong></td></tr>
+<tr class="highlight-engine"><td><strong>SlopGuard v2.2.0 (Native Rust)</strong></td><td><strong>&lt; 2.5 ms</strong></td><td><strong>&lt; 0.38 ms</strong></td><td><strong>~5.8 MB</strong></td></tr>
 <tr><td>Biome</td><td>~45 ms</td><td>~12 ms</td><td>~28 MB</td></tr>
 <tr><td>ESLint</td><td>~620 ms</td><td>~180 ms</td><td>~140 MB</td></tr>
 <tr><td>SonarQube Scanner</td><td>~4,200 ms</td><td>~1,200 ms</td><td>~600 MB</td></tr>
@@ -259,29 +270,29 @@ Unified Git Diff Auditor
 <section id="guides" class="section">
 <div class="container">
 <div class="section-intro">
-<div class="section-kicker">v2.1.0 Release Matrix</div>
+<div class="section-kicker">v2.2.0 Release Matrix</div>
 <h2 class="section-headline">Distribution Center &amp; Installation</h2>
 </div>
 <div class="guide-cards">
 <div class="guide-box">
 <h4>Windows x64 Native</h4>
 <p>Standalone zero-dependency executable:</p>
-<pre>curl -LO https://github.com/avelone123123/slopguard/releases/download/v2.1.0/slopguard-v2.1.0-windows-x64.exe</pre>
+<pre>curl -LO https://github.com/avelone123123/slopguard/releases/download/v2.2.0/slopguard-v2.2.0-windows-x64.exe</pre>
 </div>
 <div class="guide-box">
 <h4>Linux x86_64 Native</h4>
 <p>Precompiled musl/glibc tarball:</p>
-<pre>curl -LO https://github.com/avelone123123/slopguard/releases/download/v2.1.0/slopguard-v2.1.0-linux-x86_64.tar.gz</pre>
+<pre>curl -LO https://github.com/avelone123123/slopguard/releases/download/v2.2.0/slopguard-v2.2.0-linux-x86_64.tar.gz</pre>
 </div>
 <div class="guide-box">
 <h4>macOS Apple Silicon</h4>
 <p>Universal arm64 binary archive:</p>
-<pre>curl -LO https://github.com/avelone123123/slopguard/releases/download/v2.1.0/slopguard-v2.1.0-macos-aarch64.tar.gz</pre>
+<pre>curl -LO https://github.com/avelone123123/slopguard/releases/download/v2.2.0/slopguard-v2.2.0-macos-aarch64.tar.gz</pre>
 </div>
 <div class="guide-box">
 <h4>Cargo Quickstart</h4>
 <p>Build and install to user bin directory:</p>
-<pre>cargo install slopguard --version 2.1.0
+<pre>cargo install slopguard --version 2.2.0
 slopguard monitor</pre>
 </div>
 <div class="guide-box">
@@ -304,8 +315,8 @@ slopguard monitor</pre>
 </div>
 <div class="checksum-box">
 <div>
-<div class="checksum-label">SHA-256 Checksum (slopguard-v2.1.0-windows-x64.exe)</div>
-<div class="checksum-code" id="checksumCode">88AC995CEAA11FF20776952CDFC08E30BFD49AB855F7AC9DF6D6885367B76B27</div>
+<div class="checksum-label">SHA-256 Checksum (slopguard-v2.2.0-windows-x64.exe)</div>
+<div class="checksum-code" id="checksumCode">81149C5200810B95B2CAFA7955505DD73797B9F56552C6A39A8E33F80F5C777A</div>
 </div>
 <button class="btn btn-secondary" onclick="copyText('checksumCode', this)">Copy SHA-256</button>
 </div>

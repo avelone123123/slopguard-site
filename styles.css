@@ -43,6 +43,7 @@ header.site-header{position:sticky;top:0;background:rgba(10,11,14,0.92);backdrop
 .stat-subhead{font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.5px}
 .stat-main{font-size:15px;font-weight:600;color:var(--text-primary)}
 .stat-note{font-size:11px;color:var(--text-muted)}
+.flamegraph-badge{display:inline-flex;align-items:center;margin:4px 0}
 .wave-wrapper{background:var(--bg-surface);border:1px solid var(--border-default);border-radius:5px;padding:12px;margin-bottom:14px}
 .wave-label-row{display:flex;justify-content:space-between;font-size:11px;color:var(--text-muted);margin-bottom:8px}
 #waveCanvas{width:100%;height:90px;display:block}
