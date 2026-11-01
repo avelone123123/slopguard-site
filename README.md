@@ -8,9 +8,9 @@
 
   <br>
 
-  <img alt="Release: v3.3.0" src="https://img.shields.io/badge/release-v3.3.0-10b981?style=flat-square">
-  <img alt="Firewalls: 60 Active" src="https://img.shields.io/badge/firewalls-60%20active-blue?style=flat-square">
-  <img alt="Tests: 241 Passed" src="https://img.shields.io/badge/tests-241%20passed%20(100%25)-10b981?style=flat-square">
+  <img alt="Release: v3.4.0" src="https://img.shields.io/badge/release-v3.4.0-10b981?style=flat-square">
+  <img alt="Firewalls: 63 Active" src="https://img.shields.io/badge/firewalls-63%20active-blue?style=flat-square">
+  <img alt="Tests: 245 Passed" src="https://img.shields.io/badge/tests-245%20passed%20(100%25)-10b981?style=flat-square">
   <img alt="Vector Assets: 100% SVG" src="https://img.shields.io/badge/vector-100%25%20SVG-00f2fe?style=flat-square">
 </div>
 
@@ -31,13 +31,13 @@ Hosted live at: **[https://avelone123123.github.io/slopguard-site/](https://avel
    - Built-in scenario presets: Supply chain poison, unawaited async loop starvation, weak PRNG tokens, polyglot deserialization gadgets, and multi-encoded directory traversal.
    - Real-time remediation suggestions and code snippet sanitization.
 
-2. **60-Firewall Command Matrix**:
-   - Synchronized with SlopGuard Core Rust engine v3.3.0 (`AST_DETECTOR_DEFINITIONS`).
+2. **63-Firewall Command Matrix**:
+   - Synchronized with SlopGuard Core Rust engine v3.4.0 (`AST_DETECTOR_DEFINITIONS`).
    - Categorized across 5 operational divisions:
-     - **Supply Chain & Slopsquatting**: 13 active shields
-     - **Async & Concurrency Guard**: 12 active shields
+     - **Supply Chain & Slopsquatting**: 14 active shields
+     - **Async & Concurrency Guard**: 13 active shields
      - **Entropy & Credentials**: 12 active shields
-     - **Path Traversal & Injection**: 13 active shields
+     - **Path Traversal & Injection**: 14 active shields
      - **Code Quality & Memory Safety**: 10 active shields
 
 3. **Pure SVG Vector Iconography**:
@@ -85,15 +85,15 @@ Open `http://localhost:8080` in your browser.
 
 | Attribute | Web Platform (`slopguard-site`) | Core Engine (`slopguard`) |
 | :--- | :--- | :--- |
-| Version | `v3.3.0` | `3.3.0` |
-| AST Firewalls | 60 active | 60 active (`SLOP-001` .. `SLOP-060`) |
-| Verified Unit Tests | 241 passed | 241 passed (100% pass rate) |
-| Latency Target | < 0.42ms fast-path | < 2.5ms cold startup, < 0.42ms / 10k LOC |
+| Version | `v3.4.0` | `3.4.0` |
+| AST Firewalls | 63 active | 63 active (`SLOP-001` .. `SLOP-063`) |
+| Verified Unit Tests | 245 passed | 245 passed (100% pass rate) |
+| Latency Target | < 0.35ms fast-path | < 2.5ms cold startup, < 0.35ms / 10k LOC |
 | Assets | 100% pure SVG | 100% pure SVG |
 
 ---
 
-## Threat Matrix (THREAT-01 – THREAT-10)
+## Threat Matrix (THREAT-01 – THREAT-13)
 
 | Threat ID | Description | Core Active Shield |
 | :--- | :--- | :--- |
@@ -107,6 +107,9 @@ Open `http://localhost:8080` in your browser.
 | `THREAT-08` | Async Generator / Stream Unhandled Break & Return Leaks | `SLOP-058` |
 | `THREAT-09` | Direct Non-CSPRNG Truncated Crypto Key Generation | `SLOP-059` |
 | `THREAT-10` | Unbounded Channel Sprawl & Queue Memory Exhaustion | `SLOP-060` |
+| `THREAT-11` | Dynamic Subprocess Shell Interpolation Injections | `SLOP-061` |
+| `THREAT-12` | Unbounded Event Listener Loops & Memory Leaks | `SLOP-062` |
+| `THREAT-13` | Hallucinated Polyglot AI SDK Wrappers & Slopsquatting | `SLOP-063` |
 
 ---
 
