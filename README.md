@@ -93,6 +93,23 @@ Open `http://localhost:8080` in your browser.
 
 ---
 
+## Threat Matrix (THREAT-01 – THREAT-10)
+
+| Threat ID | Description | Core Active Shield |
+| :--- | :--- | :--- |
+| `THREAT-01` | Ghost Package & Slopsquatting Manifest Filters | `SLOP-009`, `SLOP-011`, `SLOP-046`, `SLOP-049` |
+| `THREAT-02` | Microtask Starvation & Unawaited Loop Anti-Patterns | `SLOP-014`, `SLOP-019`, `SLOP-020`, `SLOP-050` |
+| `THREAT-03` | Insecure PRNG Entropy & Predictable Key Generation | `SLOP-004`, `SLOP-048`, `SLOP-051` |
+| `THREAT-04` | Non-Canonical Deep Path Traversal & Zip-Slip Protection | `SLOP-030`, `SLOP-053`, `SLOP-054` |
+| `THREAT-05` | Polymorphic Deserialization RCE Gadget Interception | `SLOP-034`, `SLOP-052`, `SLOP-056` |
+| `THREAT-06` | Speculative Native FFI ABI & WASM Host Bindings | `SLOP-018` |
+| `THREAT-07` | Compound Slopsquat Package Namespace Manifest Poisoning | `SLOP-057` |
+| `THREAT-08` | Async Generator / Stream Unhandled Break & Return Leaks | `SLOP-058` |
+| `THREAT-09` | Direct Non-CSPRNG Truncated Crypto Key Generation | `SLOP-059` |
+| `THREAT-10` | Unbounded Channel Sprawl & Queue Memory Exhaustion | `SLOP-060` |
+
+---
+
 ## License
 
 MIT © [avelone123123](https://github.com/avelone123123)
