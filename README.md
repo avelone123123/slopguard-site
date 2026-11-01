@@ -88,7 +88,7 @@ Open `http://localhost:8080` in your browser.
 | Version | `v3.2.0` | `3.2.0` |
 | AST Firewalls | 56 active | 56 active (`SLOP-001` .. `SLOP-056`) |
 | Verified Unit Tests | 221 passed | 221 passed (100% pass rate) |
-| Latency Target | < 0.42ms fast-path | < 2.5ms cold startup, < 0.42ms / 1k LOC |
+| Latency Target | < 0.42ms fast-path | < 2.5ms cold startup, < 0.42ms / 10k LOC |
 | Assets | 100% pure SVG | 100% pure SVG |
 
 ---
