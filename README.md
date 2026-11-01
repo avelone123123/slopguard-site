@@ -8,9 +8,9 @@
 
   <br>
 
-  <img alt="Release: v3.1.0" src="https://img.shields.io/badge/release-v3.1.0-10b981?style=flat-square">
-  <img alt="Firewalls: 54 Active" src="https://img.shields.io/badge/firewalls-54%20active-blue?style=flat-square">
-  <img alt="Tests: 202 Passed" src="https://img.shields.io/badge/tests-202%20passed%20(100%25)-10b981?style=flat-square">
+  <img alt="Release: v3.2.0" src="https://img.shields.io/badge/release-v3.2.0-10b981?style=flat-square">
+  <img alt="Firewalls: 56 Active" src="https://img.shields.io/badge/firewalls-56%20active-blue?style=flat-square">
+  <img alt="Tests: 221 Passed" src="https://img.shields.io/badge/tests-221%20passed%20(100%25)-10b981?style=flat-square">
   <img alt="Vector Assets: 100% SVG" src="https://img.shields.io/badge/vector-100%25%20SVG-00f2fe?style=flat-square">
 </div>
 
@@ -31,13 +31,13 @@ Hosted live at: **[https://avelone123123.github.io/slopguard-site/](https://avel
    - Built-in scenario presets: Supply chain poison, unawaited async loop starvation, weak PRNG tokens, polyglot deserialization gadgets, and multi-encoded directory traversal.
    - Real-time remediation suggestions and code snippet sanitization.
 
-2. **54-Firewall Command Matrix**:
-   - Synchronized with SlopGuard Core Rust engine v3.1.0 (`AST_DETECTOR_DEFINITIONS`).
+2. **56-Firewall Command Matrix**:
+   - Synchronized with SlopGuard Core Rust engine v3.2.0 (`AST_DETECTOR_DEFINITIONS`).
    - Categorized across 5 operational divisions:
-     - **Supply Chain & Slopsquatting**: 11 active shields
+     - **Supply Chain & Slopsquatting**: 12 active shields
      - **Async & Concurrency Guard**: 10 active shields
      - **Entropy & Credentials**: 11 active shields
-     - **Path Traversal & Injection**: 12 active shields
+     - **Path Traversal & Injection**: 13 active shields
      - **Code Quality & Memory Safety**: 10 active shields
 
 3. **Pure SVG Vector Iconography**:
@@ -85,10 +85,10 @@ Open `http://localhost:8080` in your browser.
 
 | Attribute | Web Platform (`slopguard-site`) | Core Engine (`slopguard`) |
 | :--- | :--- | :--- |
-| Version | `v3.1.0` | `3.1.0` |
-| AST Firewalls | 54 active | 54 active (`SLOP-001` .. `SLOP-054`) |
-| Verified Unit Tests | 202 passed | 202 passed (100% pass rate) |
-| Latency Target | < 0.35ms fast-path | < 2.5ms cold startup, < 0.35ms / 1k LOC |
+| Version | `v3.2.0` | `3.2.0` |
+| AST Firewalls | 56 active | 56 active (`SLOP-001` .. `SLOP-056`) |
+| Verified Unit Tests | 221 passed | 221 passed (100% pass rate) |
+| Latency Target | < 0.42ms fast-path | < 2.5ms cold startup, < 0.42ms / 1k LOC |
 | Assets | 100% pure SVG | 100% pure SVG |
 
 ---
