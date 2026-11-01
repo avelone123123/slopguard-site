@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SlopGuard v3.2.0 - The Native AI Slop Firewall</title>
+<title>SlopGuard v3.3.0 - The Native AI Slop Firewall</title>
 <link rel="icon" type="image/svg+xml" href="assets/icon.svg">
-<link rel="stylesheet" href="styles.css?v=20261101_0700">
+<link rel="stylesheet" href="styles.css?v=20261102_0100">
 </head>
 <body>
 <header class="site-header">
@@ -25,7 +25,7 @@
 <a href="https://discord.gg/z7C9dprye" target="_blank" class="btn btn-secondary">Discord</a>
 <a href="https://t.me/SlopGuard" target="_blank" class="btn btn-secondary">Telegram</a>
 <a href="https://github.com/avelone123123/slopguard" target="_blank" class="btn btn-secondary">GitHub</a>
-<a href="https://github.com/avelone123123/slopguard/releases/tag/v3.2.0" target="_blank" class="btn btn-primary">v3.2.0</a>
+<a href="https://github.com/avelone123123/slopguard/releases/tag/v3.3.0" target="_blank" class="btn btn-primary">v3.3.0</a>
 </div>
 </div>
 </header>
@@ -34,7 +34,7 @@
 <div class="container">
 <div class="pill">
 <span class="pill-dot"></span>
-<span>SlopGuard v3.2.0 &middot; 100% Native Rust AST Engine</span>
+<span>SlopGuard v3.3.0 &middot; 60 AST Firewalls &middot; 240+ Unit Tests</span>
 </div>
 <h1 class="hero-title">The Codebase Firewall for AI Coding Agents</h1>
 <p class="hero-sub">Intercept hallucinations, speculative packages, silent async traps, and leaked credentials before git commit. Sub-millisecond latency powered by pure Rust.</p>
@@ -54,7 +54,7 @@
 </div>
 </div>
 <div class="hero-actions">
-<a href="https://github.com/avelone123123/slopguard/releases/download/v3.2.0/slopguard-v3.2.0-windows-x64.exe" class="btn btn-primary">Download slopguard-v3.2.0.exe</a>
+<a href="https://github.com/avelone123123/slopguard/releases/download/v3.3.0/slopguard-v3.3.0-windows-x64.exe" class="btn btn-primary">Download slopguard-v3.3.0.exe</a>
 <a href="https://discord.gg/z7C9dprye" target="_blank" class="btn btn-secondary">Join Discord</a>
 <a href="https://t.me/SlopGuard" target="_blank" class="btn btn-secondary">Telegram Channel</a>
 <a href="https://github.com/avelone123123/slopguard" target="_blank" class="btn btn-secondary">Star on GitHub</a>
@@ -62,8 +62,8 @@
 <div class="tech-pills">
 <div class="tech-pill">Engine: <strong>100% Pure Rust</strong></div>
 <div class="tech-pill">Protocol: <strong>MCP JSON-RPC 2.0</strong></div>
-<div class="tech-pill">Firewalls: <strong>56 Active Shields</strong></div>
-<div class="tech-pill">Tests: <strong>221 Passed (100%)</strong></div>
+<div class="tech-pill">Firewalls: <strong>60 Active Shields</strong></div>
+<div class="tech-pill">Tests: <strong>241 Passed (100%)</strong></div>
 <div class="tech-pill">Latency: <strong>&lt; 0.42ms</strong></div>
 <div class="tech-pill">Startup: <strong>&lt; 2.5ms</strong></div>
 <div class="tech-pill">License: <strong>MIT Open Source</strong></div>
@@ -83,7 +83,7 @@
 <div class="stat-item">
 <span class="stat-subhead">AI Hygiene Health</span>
 <span class="stat-main" style="color:#10b981">100/100 <span style="font-size:12px;color:#94a3b8;font-weight:400">[GRADE A+]</span></span>
-<span class="stat-note">56 Active AST Firewalls Armed</span>
+<span class="stat-note">60 Active AST Firewalls Armed</span>
 </div>
 <div class="stat-item">
 <span class="stat-subhead">Engine Latency</span>
@@ -183,11 +183,19 @@ Unified Git Diff Auditor
 <button class="preset-btn" onclick="loadIdePreset('insecure_prng', this)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>Preset 3: Insecure PRNG</button>
 <button class="preset-btn" onclick="loadIdePreset('unsafe_deserial', this)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>Preset 4: Deserialization Gadget</button>
 <button class="preset-btn" onclick="loadIdePreset('path_traversal', this)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>Preset 5: Path Traversal</button>
+<button class="preset-btn" onclick="loadIdePreset('compound_slopsquat', this)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>Preset 6: Compound Slopsquat</button>
+<button class="preset-btn" onclick="loadIdePreset('async_stream_break', this)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>Preset 7: Async Stream Break</button>
+<button class="preset-btn" onclick="loadIdePreset('truncated_keygen', this)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>Preset 8: Truncated Keygen</button>
+<button class="preset-btn" onclick="loadIdePreset('unbounded_channel', this)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>Preset 9: Channel Sprawl</button>
 </div>
 <div class="rules-toggle-bar">
 <label class="rule-toggle-item"><input type="checkbox" checked onchange="toggleRuleFilter('no-hallucinated-package-manifest', this.checked)">no-hallucinated-package-manifest</label>
+<label class="rule-toggle-item"><input type="checkbox" checked onchange="toggleRuleFilter('no-slopsquat-compound-namespace', this.checked)">no-slopsquat-compound-namespace</label>
 <label class="rule-toggle-item"><input type="checkbox" checked onchange="toggleRuleFilter('no-unawaited-async-in-loops', this.checked)">no-unawaited-async-in-loops</label>
+<label class="rule-toggle-item"><input type="checkbox" checked onchange="toggleRuleFilter('no-async-generator-unhandled-break', this.checked)">no-async-generator-unhandled-break</label>
 <label class="rule-toggle-item"><input type="checkbox" checked onchange="toggleRuleFilter('no-insecure-prng-tokens', this.checked)">no-insecure-prng-tokens</label>
+<label class="rule-toggle-item"><input type="checkbox" checked onchange="toggleRuleFilter('no-insecure-direct-crypto-keygen', this.checked)">no-insecure-direct-crypto-keygen</label>
+<label class="rule-toggle-item"><input type="checkbox" checked onchange="toggleRuleFilter('no-unbounded-channel-sprawl', this.checked)">no-unbounded-channel-sprawl</label>
 <label class="rule-toggle-item"><input type="checkbox" checked onchange="toggleRuleFilter('no-deep-path-traversal', this.checked)">no-deep-path-traversal</label>
 <label class="rule-toggle-item"><input type="checkbox" checked onchange="toggleRuleFilter('no-unsafe-deserialization', this.checked)">no-unsafe-deserialization</label>
 </div>
@@ -278,21 +286,21 @@ Sanitized Diff Hunk
 <div class="container">
 <div class="section-intro">
 <div class="section-kicker">Detection Engine</div>
-<h2 class="section-headline">54 Active AST Firewalls</h2>
+<h2 class="section-headline">60 Active AST Firewalls</h2>
 </div>
 <div class="rules-hub">
 <div class="hub-control-panel">
 <div class="hub-filter-tabs">
-<button class="hub-tab-btn active" onclick="setFirewallCategory('all', this)">All Shields <span class="hub-tab-count" id="countAll">54</span></button>
-<button class="hub-tab-btn" onclick="setFirewallCategory('supply-chain', this)">Supply Chain <span class="hub-tab-count" id="countSupply">11</span></button>
-<button class="hub-tab-btn" onclick="setFirewallCategory('async-concurrency', this)">Async / Concurrency <span class="hub-tab-count" id="countAsync">10</span></button>
-<button class="hub-tab-btn" onclick="setFirewallCategory('crypto-auth', this)">Crypto &amp; Auth <span class="hub-tab-count" id="countCrypto">11</span></button>
+<button class="hub-tab-btn active" onclick="setFirewallCategory('all', this)">All Shields <span class="hub-tab-count" id="countAll">60</span></button>
+<button class="hub-tab-btn" onclick="setFirewallCategory('supply-chain', this)">Supply Chain <span class="hub-tab-count" id="countSupply">12</span></button>
+<button class="hub-tab-btn" onclick="setFirewallCategory('async-concurrency', this)">Async / Concurrency <span class="hub-tab-count" id="countAsync">12</span></button>
+<button class="hub-tab-btn" onclick="setFirewallCategory('crypto-auth', this)">Crypto &amp; Auth <span class="hub-tab-count" id="countCrypto">12</span></button>
 <button class="hub-tab-btn" onclick="setFirewallCategory('path-injection', this)">Path &amp; Injection <span class="hub-tab-count" id="countPath">12</span></button>
-<button class="hub-tab-btn" onclick="setFirewallCategory('code-quality', this)">Code Quality &amp; Sabotage <span class="hub-tab-count" id="countQuality">10</span></button>
+<button class="hub-tab-btn" onclick="setFirewallCategory('code-quality', this)">Code Quality &amp; Sabotage <span class="hub-tab-count" id="countQuality">12</span></button>
 </div>
 <div class="hub-search-box">
 <svg class="hub-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-<input id="firewallSearch" class="hub-search-input" type="text" placeholder="Search 56 AST rules, threat codes, or CWEs..." oninput="handleFirewallSearch(this.value)">
+<input id="firewallSearch" class="hub-search-input" type="text" placeholder="Search 60 AST rules, threat codes, or CWEs..." oninput="handleFirewallSearch(this.value)">
 </div>
 </div>
 <div class="rules-viewport" id="rulesViewport">
@@ -313,7 +321,7 @@ Sanitized Diff Hunk
 <tr><th>Tool</th><th>Startup Latency</th><th>Scan Time (1k LOC)</th><th>Memory Footprint</th></tr>
 </thead>
 <tbody>
-<tr class="highlight-engine"><td><strong>SlopGuard v3.2.0 (Native Rust)</strong></td><td><strong>&lt; 2.5 ms</strong></td><td><strong>&lt; 0.42 ms</strong></td><td><strong>~5.8 MB</strong></td></tr>
+<tr class="highlight-engine"><td><strong>SlopGuard v3.3.0 (Native Rust)</strong></td><td><strong>&lt; 2.5 ms</strong></td><td><strong>&lt; 0.42 ms</strong></td><td><strong>~5.8 MB</strong></td></tr>
 <tr><td>Biome</td><td>~45 ms</td><td>~12 ms</td><td>~28 MB</td></tr>
 <tr><td>ESLint</td><td>~620 ms</td><td>~180 ms</td><td>~140 MB</td></tr>
 <tr><td>SonarQube Scanner</td><td>~4,200 ms</td><td>~1,200 ms</td><td>~600 MB</td></tr>
@@ -349,7 +357,7 @@ Sanitized Diff Hunk
 <section id="guides" class="section">
 <div class="container">
 <div class="section-intro">
-<div class="section-kicker">v3.2.0 Distribution Matrix</div>
+<div class="section-kicker">v3.3.0 Distribution Matrix</div>
 <h2 class="section-headline">4-Tier Distribution Architecture</h2>
 </div>
 <div class="matrix-tier-grid">
@@ -382,22 +390,22 @@ Sanitized Diff Hunk
 <div class="guide-box">
 <h4>Windows x86_64 (MSVC)</h4>
 <p>Standalone zero-dependency executable &amp; zip:</p>
-<pre>curl -LO https://github.com/avelone123123/slopguard/releases/download/v3.2.0/slopguard-v3.2.0-windows-x64.exe</pre>
+<pre>curl -LO https://github.com/avelone123123/slopguard/releases/download/v3.3.0/slopguard-v3.3.0-windows-x64.exe</pre>
 </div>
 <div class="guide-box">
 <h4>Linux x86_64 (GNU / Musl)</h4>
 <p>Precompiled static release archive:</p>
-<pre>curl -LO https://github.com/avelone123123/slopguard/releases/download/v3.2.0/slopguard-v3.2.0-linux-x64.tar.gz</pre>
+<pre>curl -LO https://github.com/avelone123123/slopguard/releases/download/v3.3.0/slopguard-v3.3.0-linux-x64.tar.gz</pre>
 </div>
 <div class="guide-box">
 <h4>macOS Apple Silicon (aarch64)</h4>
 <p>Universal ARM64 binary archive:</p>
-<pre>curl -LO https://github.com/avelone123123/slopguard/releases/download/v3.2.0/slopguard-v3.2.0-macos-universal.tar.gz</pre>
+<pre>curl -LO https://github.com/avelone123123/slopguard/releases/download/v3.3.0/slopguard-v3.3.0-macos-universal.tar.gz</pre>
 </div>
 <div class="guide-box">
 <h4>macOS Intel (x86_64)</h4>
 <p>Darwin x86_64 binary archive:</p>
-<pre>curl -LO https://github.com/avelone123123/slopguard/releases/download/v3.2.0/slopguard-v3.2.0-macos-universal.tar.gz</pre>
+<pre>curl -LO https://github.com/avelone123123/slopguard/releases/download/v3.3.0/slopguard-v3.3.0-macos-universal.tar.gz</pre>
 </div>
 <div class="guide-box">
 <h4>Cargo Quickstart</h4>
@@ -425,8 +433,8 @@ slopguard monitor</pre>
 </div>
 <div class="checksum-box">
 <div>
-<div class="checksum-label">SHA-256 Checksum (slopguard-v3.2.0-windows-x64.exe)</div>
-<div class="checksum-code" id="checksumExeCode">526374568820642BD3E3949E0D7C1EB49B5ABDA73120B1B2488C27729966BBB8</div>
+<div class="checksum-label">SHA-256 Checksum (slopguard-v3.3.0-windows-x64.exe)</div>
+<div class="checksum-code" id="checksumExeCode">C14663D40CAFEDD119C92A2BDEE3B458D4A4E2BF14C39898128DFF178FA0C10A</div>
 </div>
 <button class="btn btn-secondary" onclick="copyText('checksumExeCode', this)">Copy SHA-256</button>
 </div>
