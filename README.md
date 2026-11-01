@@ -6,7 +6,7 @@
   <br>
   <img alt="Release: v3.5.0" src="https://img.shields.io/badge/release-v3.5.0-10b981?style=flat-square">
   <img alt="Firewalls: 66 Active" src="https://img.shields.io/badge/firewalls-66%20active-blue?style=flat-square">
-  <img alt="Tests: 245 Passed" src="https://img.shields.io/badge/tests-252%20passed%20(100%25)-10b981?style=flat-square">
+  <img alt="Tests: 252 Passed" src="https://img.shields.io/badge/tests-252%20passed%20(100%25)-10b981?style=flat-square">
   <img alt="Vector Assets: 100% SVG" src="https://img.shields.io/badge/vector-100%25%20SVG-00f2fe?style=flat-square">
 </div>
 ---
@@ -19,13 +19,13 @@ Hosted live at: **[https://avelone123123.github.io/slopguard-site/](https://avel
    - Zero-layout-shift live scanner supporting single-file audits and unified diff inspections.
    - Built-in scenario presets: Supply chain poison, unawaited async loop starvation, weak PRNG tokens, polyglot deserialization gadgets, and multi-encoded directory traversal.
    - Real-time remediation suggestions and code snippet sanitization.
-2. **63-Firewall Command Matrix**:
+2. **66-Firewall Command Matrix**:
    - Synchronized with SlopGuard Core Rust engine v3.5.0 (`AST_DETECTOR_DEFINITIONS`).
    - Categorized across 5 operational divisions:
+     - **Path Traversal & Injection**: 16 active shields
      - **Supply Chain & Slopsquatting**: 14 active shields
+     - **Entropy & Credentials**: 13 active shields
      - **Async & Concurrency Guard**: 13 active shields
-     - **Entropy & Credentials**: 12 active shields
-     - **Path Traversal & Injection**: 14 active shields
      - **Code Quality & Memory Safety**: 10 active shields
 3. **Pure SVG Vector Iconography**:
    - 100% vector SVG assets for UI buttons, status indicators, badges, and modal drawers. Zero emoji dependencies.
@@ -56,13 +56,13 @@ Open `http://localhost:8080` in your browser.
 ## Synchronization Matrix
 | Attribute | Web Platform (`slopguard-site`) | Core Engine (`slopguard`) |
 | :--- | :--- | :--- |
-| Version | `v3.5.0` | `3.4.0` |
-| AST Firewalls | 63 active | 63 active (`SLOP-001` .. `SLOP-063`) |
-| Verified Unit Tests | 245 passed | 245 passed (100% pass rate) |
+| Version | `v3.5.0` | `v3.5.0` |
+| AST Firewalls | 66 active | 66 active (`SLOP-001` .. `SLOP-066`) |
+| Verified Unit Tests | 252 passed | 252 passed (100% pass rate) |
 | Latency Target | < 0.35ms fast-path | < 2.5ms cold startup, < 0.35ms / 10k LOC |
 | Assets | 100% pure SVG | 100% pure SVG |
 ---
-## Threat Matrix (THREAT-01 – THREAT-13)
+## Threat Matrix (THREAT-01 – THREAT-16)
 | Threat ID | Description | Core Active Shield |
 | :--- | :--- | :--- |
 | `THREAT-01` | Ghost Package & Slopsquatting Manifest Filters | `SLOP-009`, `SLOP-011`, `SLOP-046`, `SLOP-049` |
@@ -78,6 +78,9 @@ Open `http://localhost:8080` in your browser.
 | `THREAT-11` | Dynamic Subprocess Shell Interpolation Injections | `SLOP-061` |
 | `THREAT-12` | Unbounded Event Listener Loops & Memory Leaks | `SLOP-062` |
 | `THREAT-13` | Hallucinated Polyglot AI SDK Wrappers & Slopsquatting | `SLOP-063` |
+| `THREAT-14` | Speculative TOCTOU File Race & Concurrency Invalidation | `SLOP-064` |
+| `THREAT-15` | Hallucinated & Non-Standard Cryptographic Algorithms | `SLOP-065` |
+| `THREAT-16` | Speculative Dynamic Host SSRF Template Interpolation | `SLOP-066` |
 ---
 ## License
 MIT © [avelone123123](https://github.com/avelone123123)
