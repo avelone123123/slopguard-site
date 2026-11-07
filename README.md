@@ -4,7 +4,7 @@
   <br>
   **[Live Platform](https://avelone123123.github.io/slopguard-site/)** | **[Core Rust Engine](https://github.com/avelone123123/slopguard)** | **[Discord](https://discord.gg/z7C9dprye)** | **[Telegram](https://t.me/SlopGuard)**
   <br>
-  <img alt="Release: v3.5.103" src="https://img.shields.io/badge/release-v3.5.103-10b981?style=flat-square">
+  <img alt="Release: v3.5.104" src="https://img.shields.io/badge/release-v3.5.104-10b981?style=flat-square">
   <img alt="Firewalls: 66 Active" src="https://img.shields.io/badge/firewalls-66%20active-blue?style=flat-square">
   <img alt="Tests: 252 Passed" src="https://img.shields.io/badge/tests-252%20passed%20(100%25)-10b981?style=flat-square">
   <img alt="Vector Assets: 100% SVG" src="https://img.shields.io/badge/vector-100%25%20SVG-00f2fe?style=flat-square">
@@ -20,7 +20,7 @@ Hosted live at: **[https://avelone123123.github.io/slopguard-site/](https://avel
    - Built-in scenario presets: Supply chain poison, unawaited async loop starvation, weak PRNG tokens, polyglot deserialization gadgets, and multi-encoded directory traversal.
    - Real-time remediation suggestions and code snippet sanitization.
 2. **66-Firewall Command Matrix**:
-   - Synchronized with SlopGuard Core Rust engine v3.5.103 (`AST_DETECTOR_DEFINITIONS`).
+   - Synchronized with SlopGuard Core Rust engine v3.5.104 (`AST_DETECTOR_DEFINITIONS`).
    - Categorized across 5 operational divisions:
      - **Path Traversal & Injection**: 16 active shields
      - **Supply Chain & Slopsquatting**: 14 active shields
@@ -56,7 +56,7 @@ Open `http://localhost:8080` in your browser.
 ## Synchronization Matrix
 | Attribute | Web Platform (`slopguard-site`) | Core Engine (`slopguard`) |
 | :--- | :--- | :--- |
-| Version | `v3.5.103` | `v3.5.103` |
+| Version | `v3.5.104` | `v3.5.104` |
 | AST Firewalls | 66 active | 66 active (`SLOP-001` .. `SLOP-066`) |
 | Verified Unit Tests | 252 passed | 252 passed (100% pass rate) |
 | Latency Target | < 0.35ms fast-path | < 2.5ms cold startup, < 0.35ms / 10k LOC |
